@@ -158,18 +158,34 @@
   <canvas id="smokeCanvas"></canvas>
 
   <div class="container" role="main">
-<div class="filter-wrapper">
+<div class="filter-wrapper" style="display: flex; gap: 1rem; flex-direction: column;">
+  <label for="search" class="visually-hidden">Cari karya</label>
+  <input
+    type="text"
+    id="search"
+    placeholder="Cari karya..."
+    aria-label="Cari karya"
+    style="padding: 0.5rem 0.75rem; font-size: 0.875rem; border: 1px solid #bbb; border-radius: 8px;"
+  />
+
   <label for="filter" class="visually-hidden">Pilih kategori</label>
   <select id="filter" name="filter" aria-label="Filter karya daur ulang">
-    <option>Kategori</option>
     <option value="all">Semua</option>
-    <option value="plastic">Plastik</option>
-    <option value="paper">Kertas</option>
-    <option value="metal">Logam</option>
-    <option value="glass">Kaca</option>
-    <option value="not_for_sale">Tidak Dijual</option>
+    <optgroup label="Produk">
+      <option value="baju">Baju</option>
+      <option value="peralatan">Peralatan</option>
+      <option value="dekorasi">Dekorasi</option>
+    </optgroup>
+    <optgroup label="Bahan">
+      <option value="plastic">Plastik</option>
+      <option value="paper">Kertas</option>
+      <option value="metal">Logam</option>
+      <option value="glass">Kaca</option>
+      <option value="not_for_sale">Tidak Dijual</option>
+    </optgroup>
   </select>
 </div>
+
 
 <div class="gallery" aria-label="Galeri karya seni daur ulang">
   <article class="card" tabindex="0">
