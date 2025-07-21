@@ -3,161 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galeri Karya</title>
+  <title>Galeri Karya - Bank Sampah Hijau Lestari</title>
   <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <canvas id="smokeCanvas"></canvas>
-      <header>
-        <div class="container">
-            <div class="logo">
-                <h1>Bank Sampah <span>Hijau Lestari</span></h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Gallery</a></li>
-                    <li><a href="#pricing">Bank Sampah</a></li>
-                    <li><a href="#contact">Kontak</a></li>
-                </ul>
-            </nav>
-            <div class="header-actions">
-                <a href="#login" class="btn-login">Masuk</a>
-                <a href="#register" class="btn-primary">Daftar</a>
-            </div>
-        </div>
-    </header>
 
+  <!-- Efek Asap -->
+  <canvas id="smokeCanvas"></canvas>
 
-
-  <div class="container">
-    <!-- Filter Panel -->
-    <section class="filter-wrapper" aria-label="Filter karya daur ulang">
-      <button class="filter-header" aria-expanded="true" aria-controls="filter-content" id="filter-toggle">
-        Filter
-        <span class="arrow-icon" aria-hidden="true"></span>
-      </button>
-
-      <div class="filter-content" id="filter-content" aria-hidden="false" role="region" aria-labelledby="filter-toggle">
-        <div class="search-container">
-          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 11-10.606-10.607 7.5 7.5 0 0110.606 10.607z" />
-          </svg>
-          <input type="search" class="search-input" placeholder="Untuk meneliti..." id="searchInput" />
-        </div>
-
-        <label class="checkbox-wrap">
-          <input type="checkbox" id="availableOnly" />
-          <span class="checkbox-label">Tersedia untuk dijual saja</span>
-        </label>
-
-        <div>
-          <p class="category-label">KATEGORI</p>
-          <div class="category-buttons">
-            <button class="cat-btn" data-category="baju">Baju</button>
-            <button class="cat-btn" data-category="peralatan">Peralatan</button>
-            <button class="cat-btn" data-category="dekorasi">Dekorasi</button>
-          </div>
-        </div>
-
-        <div>
-          <p class="category-label">BAHAN</p>
-          <div class="category-buttons">
-            <button class="cat-btn" data-category="plastik">Plastik</button>
-            <button class="cat-btn" data-category="kertas">Kertas</button>
-            <button class="cat-btn" data-category="kardus">Kardus</button>
-          </div>
-        </div>
-
-        <div class="filter-footer">
-          <div id="itemCount">0 dari 0 karya</div>
-          <div><button type="button" id="resetFilter" class="enabled">Hapus filter</button></div>
-        </div>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <h1>Bank Sampah <span>Hijau Lestari</span></h1>
       </div>
-    </section>
-
-    <!-- Gallery -->
-    <div class="gallery" aria-label="Galeri karya seni daur ulang">
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-        <div class="card-footer">
-          <span class="name">Botol Menari</span>
-          <span class="status">Plastik</span>
-        </div>
-      </article>
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-        <div class="card-footer">
-          <span class="name">Botol Menari</span>
-          <span class="status">Plastik</span>
-        </div>
-      </article>
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-        <div class="card-footer">
-          <span class="name">Botol Menari</span>
-          <span class="status">Plastik</span>
-        </div>
-      </article>
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-        <div class="card-footer">
-          <span class="name">Botol Menari</span>
-          <span class="status">Plastik</span>
-        </div>
-      </article>
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-        <div class="card-footer">
-          <span class="name">Botol Menari</span>
-          <span class="status">Plastik</span>
-        </div>
-      </article>
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-        <div class="card-footer">
-          <span class="name">Botol Menari</span>
-          <span class="status">Plastik</span>
-        </div>
-      </article>
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-        <div class="card-footer">
-          <span class="name">Botol Menari</span>
-          <span class="status">Plastik</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1602526217039-b92ef8aa2c1b?auto=format&fit=crop&w=600&q=80" alt="Lukisan dari kertas bekas" />
-        <div class="card-footer">
-          <span class="name">Kolase Harapan</span>
-          <span class="status">Kertas</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80" alt="Kerajinan logam bekas" />
-        <div class="card-footer">
-          <span class="name">Besi Tua Hidup</span>
-          <span class="status">Logam</span>
-        </div>
-      </article>
-
-      <article class="card">
-        <img src="https://images.unsplash.com/photo-1529688530642-93e3357bcdbb?auto=format&fit=crop&w=600&q=80" alt="Mozaik dari pecahan kaca" />
-        <div class="card-footer">
-          <span class="name">Refleksi Hijau</span>
-          <span class="status">Kaca</span>
-        </div>
-      </article>
+      <nav>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="galeri.html">Gallery</a></li>
+          <li><a href="index.html#pricing">Bank Sampah</a></li>
+          <li><a href="index.html#contact">Kontak</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <a href="#login" class="btn-login">Masuk</a>
+        <a href="#register" class="btn-primary">Daftar</a>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Smoke Cursor Script -->
+  <!-- MAIN CONTENT -->
+  <main style="margin-top: 100px;">
+    <div class="container">
+      <!-- Filter Accordion -->
+      <section class="filter-wrapper" aria-label="Filter karya daur ulang">
+        <button class="filter-header" aria-expanded="true" aria-controls="filter-content" id="filter-toggle">
+          Filter
+          <span class="arrow-icon" aria-hidden="true"></span>
+        </button>
+
+        <div class="filter-content" id="filter-content" aria-hidden="false" role="region" aria-labelledby="filter-toggle">
+          <div class="search-container">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 11-10.606-10.607 7.5 7.5 0 0110.606 10.607z" />
+            </svg>
+            <input type="search" class="search-input" placeholder="Untuk meneliti..." id="searchInput" />
+          </div>
+
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="availableOnly" />
+            <span class="checkbox-label">Tersedia untuk dijual saja</span>
+          </label>
+
+          <div>
+            <p class="category-label">KATEGORI</p>
+            <div class="category-buttons">
+              <button class="cat-btn" data-category="baju">Baju</button>
+              <button class="cat-btn" data-category="peralatan">Peralatan</button>
+              <button class="cat-btn" data-category="dekorasi">Dekorasi</button>
+            </div>
+          </div>
+
+          <div>
+            <p class="category-label">BAHAN</p>
+            <div class="category-buttons">
+              <button class="cat-btn" data-category="plastik">Plastik</button>
+              <button class="cat-btn" data-category="kertas">Kertas</button>
+              <button class="cat-btn" data-category="kardus">Kardus</button>
+            </div>
+          </div>
+
+          <div class="filter-footer">
+            <div id="itemCount">0 dari 0 karya</div>
+            <div><button type="button" id="resetFilter" class="enabled">Hapus filter</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galeri -->
+      <div class="gallery" aria-label="Galeri karya seni daur ulang">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
+          <div class="card-footer">
+            <span class="name">Botol Menari</span>
+            <span class="status">Plastik</span>
+          </div>
+        </article>
+        <!-- Tambahan karya lain di sini -->
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">
+        <h3>Bank Sampah <span>Hijau Lestari</span></h3>
+        <p>Mengubah sampah menjadi berkah untuk lingkungan yang lebih baik.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Tautan Cepat</h4>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="galeri.html">Gallery</a></li>
+          <li><a href="index.html#pricing">Bank Sampah</a></li>
+          <li><a href="index.html#contact">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Berlangganan newsletter untuk info terbaru tentang bank sampah.</p>
+        <form>
+          <input type="email" placeholder="Alamat Email">
+          <button type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2025 Bank Sampah Hijau Lestari. Semua Hak Dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SMOKE Cursor Script -->
   <script>
     const canvas = document.getElementById('smokeCanvas');
     const ctx = canvas.getContext('2d');
