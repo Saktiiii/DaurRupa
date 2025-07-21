@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gallery</title>
+  <title>Smoke Cursor Gallery</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-    /* Reset and base */
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -23,26 +23,32 @@
       padding: 2rem 1rem;
     }
 
+    #smokeCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
     .container {
       max-width: 1300px;
       width: 100%;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 1rem 2rem;
-      align-items: start;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
       background: #fafafa;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow:
-        0 2px 5px rgba(0,0,0,0.05),
-        0 6px 15px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05), 0 6px 15px rgba(0,0,0,0.08);
       position: relative;
+      z-index: 1;
     }
 
-    /* Dropdown container aligns top-right */
     .filter-wrapper {
-      justify-self: end;
-      margin-bottom: 1.5rem;
+      align-self: flex-end;
       width: 200px;
     }
 
@@ -67,114 +73,87 @@
       background-repeat: no-repeat;
       transition: border-color 0.3s ease;
     }
+
     select:focus {
       border-color: #3a86ff;
       outline: none;
       box-shadow: 0 0 3px #3a86ff88;
     }
 
-    /* Art gallery grid */
     .gallery {
-      grid-column: 1 / 2;
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       justify-content: center;
-      padding-top: 0.5rem;
     }
 
     .card {
-      background: white;
-      border-radius: 10px;
+      position: relative;
+      background: #111;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow:
-        0 1px 3px rgba(0,0,0,0.12),
-        0 8px 24px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow 0.2s ease;
+      border: 4px solid #E8FFD7;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .card:hover {
-      box-shadow:
-        0 5px 15px rgba(0,0,0,0.18),
-        0 15px 45px rgba(0,0,0,0.12);
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75);
     }
 
     .card img {
       width: 100%;
-      height: auto;
       display: block;
       object-fit: cover;
       aspect-ratio: 1 / 1;
-      background: #ececec;
+    }
+
+    .card .bw {
+      filter: none;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('https://www.transparenttextures.com/patterns/white-wall-3.png');
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: 1;
     }
 
     .card-footer {
+      position: relative;
       display: flex;
       justify-content: space-between;
-      padding: 0.75rem 1rem;
+      padding: 1rem;
       font-size: 0.875rem;
-      color: #555;
       font-weight: 600;
+      background: linear-gradient(to top, #1a1a1a, transparent);
+      color: #E8FFD7;
+      z-index: 2;
     }
 
-    .card-footer .name {
-      font-weight: 700;
-      color: #1a1a1a;
-      user-select: none;
-    }
     .card-footer .status {
-      font-weight: 400;
-      color: #888;
-      font-size: 0.8rem;
-      user-select: none;
+      font-style: italic;
+      color: #ccc;
     }
 
-    /* Background large faint shape */
-    body::before {
-      content: '';
-      position: fixed;
-      top: -150px;
-      left: -200px;
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, #d0d0d0 10%, transparent 40%);
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: 0;
-      border-radius: 50%;
-      transform: rotate(25deg);
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
     }
   </style>
 </head>
 <body>
+  <canvas id="smokeCanvas"></canvas>
+
   <div class="container" role="main">
-    <div class="gallery" aria-label="Gallery of painted dog and cat portraits">
-      <article class="card" tabindex="0">
-        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d929b4c8-a2cc-4722-b3ae-bb3c2e07ccd8.png" alt="Painting of a dog's face looking forward with golden and white highlights on black background" />
-        <div class="card-footer">
-          <span class="name">Rox</span>
-          <span class="status">Hors vente</span>
-        </div>
-      </article>
-
-      <article class="card" tabindex="0">
-        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/370adef5-0c15-43c5-a79e-9fe487f13378.png" alt="Painting of a sleeping dog's furry head resting with golden and white brush strokes on black background" />
-        <div class="card-footer">
-          <span class="name">Snowie</span>
-          <span class="status">Hors vente</span>
-        </div>
-      </article>
-
-      <article class="card" tabindex="0">
-        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b2d2a1d6-a890-4b8e-a8a6-a7663bc54c7e.png" alt="Painting of a sleeping cat with golden and white brush strokes on black background" />
-        <div class="card-footer">
-          <span class="name">Plume</span>
-          <span class="status">Hors vente</span>
-        </div>
-      </article>
-    </div>
-
     <div class="filter-wrapper">
       <label for="filter" class="visually-hidden">Select filter</label>
       <select id="filter" name="filter" aria-label="Filter gallery images">
@@ -185,18 +164,101 @@
         <option value="hors_vente">Hors vente</option>
       </select>
     </div>
+
+    <div class="gallery" aria-label="Gallery of painted dog and cat portraits">
+      <article class="card" tabindex="0">
+        <div style="position: relative;">
+          <img class="bw" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d929b4c8-a2cc-4722-b3ae-bb3c2e07ccd8.png" alt="Dog" />
+        </div>
+        <div class="card-footer">
+          <span class="name">Rox</span>
+          <span class="status">Hors vente</span>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div style="position: relative;">
+          <img class="bw" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/370adef5-0c15-43c5-a79e-9fe487f13378.png" alt="Dog" />
+        </div>
+        <div class="card-footer">
+          <span class="name">Snowie</span>
+          <span class="status">Hors vente</span>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div style="position: relative;">
+          <img class="bw" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b2d2a1d6-a890-4b8e-a8a6-a7663bc54c7e.png" alt="Cat" />
+        </div>
+        <div class="card-footer">
+          <span class="name">Plume</span>
+          <span class="status">Hors vente</span>
+        </div>
+      </article>
+    </div>
   </div>
 
-  <style>
-    /* Visually hidden for accessibility */
-    .visually-hidden {
-      position: absolute !important;
-      height: 1px; width: 1px;
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap;
+  <script>
+    const canvas = document.getElementById('smokeCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const color = 'rgba(232, 255, 215, 0.15)';
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 20 + 10;
+        this.alpha = 1;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.speedY = (Math.random() - 0.5) * 1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.alpha -= 0.01;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.globalAlpha = this.alpha;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
     }
-  </style>
+
+    function handleParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        if (particles[i].alpha <= 0) {
+          particles.splice(i, 1);
+          i--;
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      handleParticles();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      for (let i = 0; i < 3; i++) {
+        particles.push(new Particle(e.clientX, e.clientY));
+      }
+    });
+  </script>
 </body>
 </html>
-
