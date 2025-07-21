@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f5f5f5;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1300px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem 2rem;
+      align-items: start;
+      background: #fafafa;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow:
+        0 2px 5px rgba(0,0,0,0.05),
+        0 6px 15px rgba(0,0,0,0.08);
+      position: relative;
+    }
+
+    /* Dropdown container aligns top-right */
+    .filter-wrapper {
+      justify-self: end;
+      margin-bottom: 1.5rem;
+      width: 200px;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #444 50%),
+        linear-gradient(135deg, #444 50%, transparent 50%),
+        linear-gradient(to right, #ccc, #ccc);
+      background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px),
+        calc(100% - 25px) 0.7em;
+      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+      background-repeat: no-repeat;
+      transition: border-color 0.3s ease;
+    }
+    select:focus {
+      border-color: #3a86ff;
+      outline: none;
+      box-shadow: 0 0 3px #3a86ff88;
+    }
+
+    /* Art gallery grid */
+    .gallery {
+      grid-column: 1 / 2;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2rem;
+      justify-content: center;
+      padding-top: 0.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow:
+        0 1px 3px rgba(0,0,0,0.12),
+        0 8px 24px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s ease;
+    }
+    .card:hover {
+      box-shadow:
+        0 5px 15px rgba(0,0,0,0.18),
+        0 15px 45px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      background: #ececec;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .card-footer .name {
+      font-weight: 700;
+      color: #1a1a1a;
+      user-select: none;
+    }
+    .card-footer .status {
+      font-weight: 400;
+      color: #888;
+      font-size: 0.8rem;
+      user-select: none;
+    }
+
+    /* Background large faint shape */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -150px;
+      left: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, #d0d0d0 10%, transparent 40%);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      transform: rotate(25deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <div class="gallery" aria-label="Gallery of painted dog and cat portraits">
+      <article class="card" tabindex="0">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d929b4c8-a2cc-4722-b3ae-bb3c2e07ccd8.png" alt="Painting of a dog's face looking forward with golden and white highlights on black background" />
+        <div class="card-footer">
+          <span class="name">Rox</span>
+          <span class="status">Hors vente</span>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/370adef5-0c15-43c5-a79e-9fe487f13378.png" alt="Painting of a sleeping dog's furry head resting with golden and white brush strokes on black background" />
+        <div class="card-footer">
+          <span class="name">Snowie</span>
+          <span class="status">Hors vente</span>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b2d2a1d6-a890-4b8e-a8a6-a7663bc54c7e.png" alt="Painting of a sleeping cat with golden and white brush strokes on black background" />
+        <div class="card-footer">
+          <span class="name">Plume</span>
+          <span class="status">Hors vente</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="filter-wrapper">
+      <label for="filter" class="visually-hidden">Select filter</label>
+      <select id="filter" name="filter" aria-label="Filter gallery images">
+        <option>Filtrer</option>
+        <option value="all">Tous</option>
+        <option value="dogs">Chiens</option>
+        <option value="cats">Chats</option>
+        <option value="hors_vente">Hors vente</option>
+      </select>
+    </div>
+  </div>
+
+  <style>
+    /* Visually hidden for accessibility */
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
+  </style>
+</body>
+</html>
+
