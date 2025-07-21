@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galeri Kursor Asap</title>
+  <title>Galeri Kursor Asap + Filter Accordion</title>
   <style>
-    /* Gaya tetap sama seperti versi sebelumnya */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
     * {
@@ -38,8 +37,8 @@
       max-width: 1300px;
       width: 100%;
       display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      flex-direction: row;
+      gap: 2rem;
       background: #fafafa;
       padding: 2rem;
       border-radius: 12px;
@@ -48,44 +47,11 @@
       z-index: 1;
     }
 
-    .filter-wrapper {
-      align-self: flex-end;
-      width: 200px;
-    }
-
-    select {
-      width: 100%;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.875rem;
-      border: 1px solid #bbb;
-      border-radius: 8px;
-      background: white;
-      cursor: pointer;
-      appearance: none;
-      background-image:
-        linear-gradient(45deg, transparent 50%, #444 50%),
-        linear-gradient(135deg, #444 50%, transparent 50%),
-        linear-gradient(to right, #ccc, #ccc);
-      background-position:
-        calc(100% - 20px) calc(1em + 2px),
-        calc(100% - 15px) calc(1em + 2px),
-        calc(100% - 25px) 0.7em;
-      background-size: 5px 5px, 5px 5px, 1px 1.5em;
-      background-repeat: no-repeat;
-      transition: border-color 0.3s ease;
-    }
-
-    select:focus {
-      border-color: #3a86ff;
-      outline: none;
-      box-shadow: 0 0 3px #3a86ff88;
-    }
-
     .gallery {
+      flex: 1;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      justify-content: center;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
     }
 
     .card {
@@ -93,10 +59,9 @@
       background: #111;
       border-radius: 0;
       overflow: hidden;
-      border: none;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease; /* <--- tambahkan ini */
-      will-change: transform; /* optimisasi performa */
+      transition: transform 0.3s ease;
+      will-change: transform;
     }
 
     .card:hover {
@@ -110,11 +75,6 @@
       object-fit: cover;
       aspect-ratio: 1 / 1;
       border-radius: 0;
-      transition: transform 0.3s ease; /* <--- tambahkan ini */
-    }
-
-    .card .bw {
-      filter: none;
     }
 
     .card::before {
@@ -139,205 +99,261 @@
       z-index: 2;
     }
 
-    .card-footer .status {
-      font-style: italic;
-      color: #ccc;
-    }
-
-    .visually-hidden {
-      position: absolute !important;
-      height: 1px;
-      width: 1px;
+    /* ===== Accordion Filter Styles ===== */
+    .filter-wrapper {
+      width: 100%;
+      max-width: 350px;
+      background-color: white;
+      border-radius: 10px;
+      border: 1.5px solid #bbbfc7;
+      box-shadow: 0 3px 6px rgb(0 0 0 / 0.05);
       overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap;
+      font-size: 0.9rem;
     }
-    .filter-panel {
-  width: 100%;
-  max-width: 350px;
-  margin-bottom: 2rem;
-  background: #fff;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 0.9rem;
-}
 
-.filter-panel summary {
-  padding: 1rem;
-  cursor: pointer;
-  font-weight: 600;
-  border-bottom: 1px solid #eee;
-}
+    .filter-header {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      padding: 14px 18px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1a1a1a;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1.5px solid #bbbfc7;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
 
-.filter-content {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+    .arrow-icon {
+      border: solid #1a1a1a;
+      border-width: 0 2.5px 2.5px 0;
+      display: inline-block;
+      padding: 5px;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease;
+      margin-left: 10px;
+    }
 
-.filter-input input {
-  width: 100%;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 0.9rem;
-}
+    .filter-header[aria-expanded="true"] .arrow-icon {
+      transform: rotate(-135deg);
+    }
 
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+    .filter-content {
+      padding: 18px;
+      display: none;
+      animation: fadeIn 0.35s ease forwards;
+    }
 
-.filter-category span {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  display: block;
-}
+    .filter-content[aria-hidden="false"] {
+      display: block;
+    }
 
-.category-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
+    .search-container {
+      position: relative;
+      margin-bottom: 14px;
+    }
 
-.cat-btn {
-  background: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 999px;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.2s ease;
-}
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #a0a0b0;
+    }
 
-.cat-btn.active {
-  background: #3e5f44;
-  color: #fff;
-  border-color: #3e5f44;
-}
+    .search-input {
+      width: 100%;
+      padding: 10px 12px 10px 36px;
+      border: 1.5px solid #d0d0d9;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #444;
+    }
 
-.count-info {
-  font-size: 0.8rem;
-  color: #666;
-  margin-top: 1rem;
-}
+    .search-input::placeholder {
+      color: #bbbfc7;
+    }
 
-.reset-btn {
-  background: #eee;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem;
-  font-size: 0.85rem;
-  color: #777;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
+    .checkbox-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
 
-.reset-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+    .checkbox-wrap input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: #3446d3;
+    }
 
+    .checkbox-label {
+      font-weight: 600;
+      font-size: 0.925rem;
+      color: #222;
+    }
+
+    .category-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #505050;
+      margin-bottom: 8px;
+    }
+
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .cat-btn {
+      background-color: #f5f5f7;
+      border: 1.75px solid #c8c8d8;
+      color: #292d32;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .cat-btn:hover {
+      background-color: #3446d3;
+      color: white;
+      border-color: #3446d3;
+    }
+
+    .filter-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #999aac;
+      padding-top: 6px;
+      border-top: 1px solid #e4e4e8;
+    }
+
+    .filter-footer button {
+      border: none;
+      background: none;
+      color: #bbbfc7;
+      font-weight: 600;
+      cursor: not-allowed;
+    }
+
+    .filter-footer button.enabled {
+      color: #3446d3;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
+
   <canvas id="smokeCanvas"></canvas>
 
-  <div class="container" role="main">
-<div class="filter-panel">
-  <details open>
-    <summary>Filter</summary>
-    <div class="filter-content">
-      <div class="filter-input">
-        <input id="searchInput" type="text" placeholder="Untuk meneliti..." />
-      </div>
+  <div class="container">
+    <!-- Filter Panel -->
+    <section class="filter-wrapper" aria-label="Filter karya daur ulang">
+      <button class="filter-header" aria-expanded="true" aria-controls="filter-content" id="filter-toggle">
+        Menyaring
+        <span class="arrow-icon" aria-hidden="true"></span>
+      </button>
 
-      <label class="checkbox-label">
-        <input type="checkbox" id="availableOnly" />
-        Tersedia untuk dijual saja
-      </label>
+      <div class="filter-content" id="filter-content" aria-hidden="false" role="region" aria-labelledby="filter-toggle">
+        <div class="search-container">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 11-10.606-10.607 7.5 7.5 0 0110.606 10.607z" />
+          </svg>
+          <input type="search" class="search-input" placeholder="Untuk meneliti..." id="searchInput" />
+        </div>
 
-      <hr />
+        <label class="checkbox-wrap">
+          <input type="checkbox" id="availableOnly" />
+          <span class="checkbox-label">Tersedia untuk dijual saja</span>
+        </label>
 
-      <div class="filter-category">
-        <span>Kategori</span>
-        <div class="category-buttons">
-          <button class="cat-btn" data-category="baju">Baju</button>
-          <button class="cat-btn" data-category="peralatan">Peralatan</button>
-          <button class="cat-btn" data-category="dekorasi">Dekorasi</button>
+        <div>
+          <p class="category-label">KATEGORI</p>
+          <div class="category-buttons">
+            <button class="cat-btn" data-category="baju">Baju</button>
+            <button class="cat-btn" data-category="peralatan">Peralatan</button>
+            <button class="cat-btn" data-category="dekorasi">Dekorasi</button>
+          </div>
+        </div>
+
+        <div>
+          <p class="category-label">BAHAN</p>
+          <div class="category-buttons">
+            <button class="cat-btn" data-category="plastik">Plastik</button>
+            <button class="cat-btn" data-category="kertas">Kertas</button>
+            <button class="cat-btn" data-category="kardus">Kardus</button>
+          </div>
+        </div>
+
+        <div class="filter-footer">
+          <div id="itemCount">0 dari 0 karya</div>
+          <div><button type="button" id="resetFilter" class="enabled">Hapus filter</button></div>
         </div>
       </div>
-      <div class="filter-category">
-        <span>Bahan</span>
-        <div class="category-buttons">
-          <button class="cat-btn" data-category="baju">Plastik</button>
-          <button class="cat-btn" data-category="peralatan">Kertas</button>
-          <button class="cat-btn" data-category="dekorasi">Kardus</button>
+    </section>
+
+    <!-- Gallery -->
+    <div class="gallery" aria-label="Galeri karya seni daur ulang">
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
+        <div class="card-footer">
+          <span class="name">Botol Menari</span>
+          <span class="status">Plastik</span>
         </div>
-      </div>
+      </article>
 
-      <p class="count-info" id="itemCount">0 dari 0 karya</p>
-      <button class="reset-btn" id="resetFilter" disabled>Hapus filter</button>
-    </div>
-  </details>
-</div>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1602526217039-b92ef8aa2c1b?auto=format&fit=crop&w=600&q=80" alt="Lukisan dari kertas bekas" />
+        <div class="card-footer">
+          <span class="name">Kolase Harapan</span>
+          <span class="status">Kertas</span>
+        </div>
+      </article>
 
-<div class="gallery" aria-label="Galeri karya seni daur ulang">
-  <article class="card" tabindex="0">
-    <div style="position: relative;">
-      <img class="bw" src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-    </div>
-    <div class="card-footer">
-      <span class="name">Botol Menari</span>
-      <span class="status">Plastik</span>
-    </div>
-  </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80" alt="Kerajinan logam bekas" />
+        <div class="card-footer">
+          <span class="name">Besi Tua Hidup</span>
+          <span class="status">Logam</span>
+        </div>
+      </article>
 
-  <article class="card" tabindex="0">
-    <div style="position: relative;">
-      <img class="bw" src="https://images.unsplash.com/photo-1602526217039-b92ef8aa2c1b?auto=format&fit=crop&w=600&q=80" alt="Lukisan dari kertas bekas" />
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1529688530642-93e3357bcdbb?auto=format&fit=crop&w=600&q=80" alt="Mozaik dari pecahan kaca" />
+        <div class="card-footer">
+          <span class="name">Refleksi Hijau</span>
+          <span class="status">Kaca</span>
+        </div>
+      </article>
     </div>
-    <div class="card-footer">
-      <span class="name">Kolase Harapan</span>
-      <span class="status">Kertas</span>
-    </div>
-  </article>
-
-  <article class="card" tabindex="0">
-    <div style="position: relative;">
-      <img class="bw" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80" alt="Kerajinan logam bekas" />
-    </div>
-    <div class="card-footer">
-      <span class="name">Besi Tua Hidup</span>
-      <span class="status">Logam</span>
-    </div>
-  </article>
-
-  <article class="card" tabindex="0">
-    <div style="position: relative;">
-      <img class="bw" src="https://images.unsplash.com/photo-1529688530642-93e3357bcdbb?auto=format&fit=crop&w=600&q=80" alt="Mozaik dari pecahan kaca" />
-    </div>
-    <div class="card-footer">
-      <span class="name">Refleksi Hijau</span>
-      <span class="status">Kaca</span>
-    </div>
-  </article>
-
-  <article class="card" tabindex="0">
-    <div style="position: relative;">
-      <img class="bw" src="https://images.unsplash.com/photo-1617688281702-4e538df0b6a0?auto=format&fit=crop&w=600&q=80" alt="Instalasi daur ulang campuran" />
-    </div>
-    <div class="card-footer">
-      <span class="name">Tanpa Judul</span>
-      <span class="status">Tidak Dijual</span>
-    </div>
-  </article>
-</div>
-
   </div>
 
+  <!-- Smoke Cursor Script -->
   <script>
     const canvas = document.getElementById('smokeCanvas');
     const ctx = canvas.getContext('2d');
@@ -353,8 +369,8 @@
         this.y = y;
         this.size = Math.random() * 20 + 10;
         this.alpha = 1;
-        this.speedX = (Math.random() - 0.5) * 1;
-        this.speedY = (Math.random() - 0.5) * 1;
+        this.speedX = (Math.random() - 0.5);
+        this.speedY = (Math.random() - 0.5);
       }
       update() {
         this.x += this.speedX;
@@ -401,29 +417,16 @@
     });
   </script>
 
-<script>
-  const cards = document.querySelectorAll(".card");
+  <!-- Accordion toggle -->
+  <script>
+    const toggleBtn = document.getElementById('filter-toggle');
+    const content = document.getElementById('filter-content');
 
-  cards.forEach(card => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = -(y - centerY) * 0.05; // Atur sensitivitas di sini
-      const rotateY = (x - centerX) * 0.05;
-
-      card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    toggleBtn.addEventListener('click', () => {
+      const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!expanded));
+      content.setAttribute('aria-hidden', String(expanded));
     });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "rotateX(0) rotateY(0) scale(1)";
-    });
-  });
-</script>
-
+  </script>
 </body>
 </html>
