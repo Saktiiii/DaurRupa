@@ -108,7 +108,8 @@
       display: block;
       object-fit: cover;
       aspect-ratio: 1 / 1;
-      border-radius: 0; /* pastikan gambar juga tidak bulat */
+      border-radius: 0;
+      transition: transform 0.3s ease; /* <--- tambahkan ini */
     }
 
     .card .bw {
@@ -285,5 +286,31 @@
       }
     });
   </script>
+
+  <script>
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    const image = card.querySelector("img");
+
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const moveX = (x - centerX) * 0.05; // sesuaikan intensitas
+      const moveY = (y - centerY) * 0.05;
+
+      image.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.03)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      image.style.transform = "translate(0, 0) scale(1)";
+    });
+  });
+</script>
 </body>
 </html>
