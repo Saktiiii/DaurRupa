@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Galeri Kursor Asap</title>
   <style>
+    /* Gaya tetap sama seperti versi sebelumnya */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
     * {
       box-sizing: border-box;
     }
@@ -46,6 +48,39 @@
       z-index: 1;
     }
 
+    .filter-wrapper {
+      align-self: flex-end;
+      width: 200px;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #444 50%),
+        linear-gradient(135deg, #444 50%, transparent 50%),
+        linear-gradient(to right, #ccc, #ccc);
+      background-position:
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px),
+        calc(100% - 25px) 0.7em;
+      background-size: 5px 5px, 5px 5px, 1px 1.5em;
+      background-repeat: no-repeat;
+      transition: border-color 0.3s ease;
+    }
+
+    select:focus {
+      border-color: #3a86ff;
+      outline: none;
+      box-shadow: 0 0 3px #3a86ff88;
+    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -54,18 +89,19 @@
     }
 
     .card {
+      position: relative;
       background: #111;
       border-radius: 0;
       overflow: hidden;
       border: none;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease;
-      will-change: transform;
-      perspective: 600px;
+      transition: transform 0.3s ease; /* <--- tambahkan ini */
+      will-change: transform; /* optimisasi performa */
     }
 
     .card:hover {
       transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75);
     }
 
     .card img {
@@ -74,7 +110,11 @@
       object-fit: cover;
       aspect-ratio: 1 / 1;
       border-radius: 0;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease; /* <--- tambahkan ini */
+    }
+
+    .card .bw {
+      filter: none;
     }
 
     .card::before {
@@ -88,6 +128,7 @@
     }
 
     .card-footer {
+      position: relative;
       display: flex;
       justify-content: space-between;
       padding: 1rem;
@@ -95,6 +136,7 @@
       font-weight: 600;
       background: linear-gradient(to top, #1a1a1a, transparent);
       color: #E8FFD7;
+      z-index: 2;
     }
 
     .card-footer .status {
@@ -102,248 +144,286 @@
       color: #ccc;
     }
 
-    /* FILTER PANEL */
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+    }
     .filter-panel {
-      width: 100%;
-      max-width: 350px;
-      margin-bottom: 2rem;
-      background: #fff;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      font-size: 0.9rem;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
 
-    .filter-panel summary {
-      padding: 1rem;
-      cursor: pointer;
-      font-weight: 600;
-      border-bottom: 1px solid #eee;
-      list-style: none;
-    }
+.filter-panel summary {
+  padding: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+}
 
-    .filter-panel summary::marker {
-      display: none;
-    }
+.filter-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-    .filter-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease, opacity 0.4s ease;
-      opacity: 0;
-      padding: 0 1rem;
-    }
+.filter-input input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
 
-    details[open] .filter-content {
-      max-height: 1000px;
-      opacity: 1;
-      padding: 1rem;
-    }
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
-    .filter-input input {
-      width: 100%;
-      padding: 0.6rem 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 0.9rem;
-    }
+.filter-category span {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+}
 
-    .checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
 
-    .filter-category span {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
+.cat-btn {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
 
-    .category-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
+.cat-btn.active {
+  background: #3e5f44;
+  color: #fff;
+  border-color: #3e5f44;
+}
 
-    .cat-btn {
-      background: #f9f9f9;
-      border: 1px solid #ccc;
-      border-radius: 999px;
-      padding: 0.4rem 0.8rem;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s ease;
-    }
+.count-info {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 1rem;
+}
 
-    .cat-btn.active {
-      background: #3e5f44;
-      color: #fff;
-      border-color: #3e5f44;
-    }
+.reset-btn {
+  background: #eee;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  color: #777;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
 
-    .count-info {
-      font-size: 0.8rem;
-      color: #666;
-      margin-top: 1rem;
-    }
-
-    .reset-btn {
-      background: #eee;
-      border: none;
-      border-radius: 8px;
-      padding: 0.5rem;
-      font-size: 0.85rem;
-      color: #777;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .reset-btn:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+.reset-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
   </style>
 </head>
 <body>
-<canvas id="smokeCanvas"></canvas>
-<div class="container" role="main">
+  <canvas id="smokeCanvas"></canvas>
 
-  <div class="filter-panel">
-    <details open>
-      <summary>Filter</summary>
-      <div class="filter-content">
-        <div class="filter-input">
-          <input id="searchInput" type="text" placeholder="Untuk meneliti..." />
-        </div>
-        <label class="checkbox-label">
-          <input type="checkbox" id="availableOnly" />
-          Tersedia untuk dijual saja
-        </label>
-        <hr />
-        <div class="filter-category">
-          <span>Kategori</span>
-          <div class="category-buttons">
-            <button class="cat-btn" data-category="baju">Baju</button>
-            <button class="cat-btn" data-category="peralatan">Peralatan</button>
-            <button class="cat-btn" data-category="dekorasi">Dekorasi</button>
-          </div>
-        </div>
-        <div class="filter-category">
-          <span>Bahan</span>
-          <div class="category-buttons">
-            <button class="cat-btn" data-category="plastik">Plastik</button>
-            <button class="cat-btn" data-category="kertas">Kertas</button>
-            <button class="cat-btn" data-category="kardus">Kardus</button>
-          </div>
-        </div>
-        <p class="count-info" id="itemCount">0 dari 0 karya</p>
-        <button class="reset-btn" id="resetFilter" disabled>Hapus filter</button>
+  <div class="container" role="main">
+<div class="filter-panel">
+  <details open>
+    <summary>Filter</summary>
+    <div class="filter-content">
+      <div class="filter-input">
+        <input id="searchInput" type="text" placeholder="Untuk meneliti..." />
       </div>
-    </details>
-  </div>
 
-  <div class="gallery" aria-label="Galeri karya seni daur ulang">
-    <article class="card" tabindex="0">
-      <img class="bw" src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
-      <div class="card-footer">
-        <span class="name">Botol Menari</span>
-        <span class="status">Plastik</span>
-      </div>
-    </article>
+      <label class="checkbox-label">
+        <input type="checkbox" id="availableOnly" />
+        Tersedia untuk dijual saja
+      </label>
 
-    <article class="card" tabindex="0">
-      <img class="bw" src="https://images.unsplash.com/photo-1602526217039-b92ef8aa2c1b?auto=format&fit=crop&w=600&q=80" alt="Lukisan dari kertas bekas" />
-      <div class="card-footer">
-        <span class="name">Kolase Harapan</span>
-        <span class="status">Kertas</span>
+      <hr />
+
+      <div class="filter-category">
+        <span>Kategori</span>
+        <div class="category-buttons">
+          <button class="cat-btn" data-category="baju">Baju</button>
+          <button class="cat-btn" data-category="peralatan">Peralatan</button>
+          <button class="cat-btn" data-category="dekorasi">Dekorasi</button>
+        </div>
       </div>
-    </article>
-  </div>
+      <div class="filter-category">
+        <span>Bahan</span>
+        <div class="category-buttons">
+          <button class="cat-btn" data-category="baju">Plastik</button>
+          <button class="cat-btn" data-category="peralatan">Kertas</button>
+          <button class="cat-btn" data-category="dekorasi">Kardus</button>
+        </div>
+      </div>
+
+      <p class="count-info" id="itemCount">0 dari 0 karya</p>
+      <button class="reset-btn" id="resetFilter" disabled>Hapus filter</button>
+    </div>
+  </details>
 </div>
 
-<script>
-  // Smoke cursor
-  const canvas = document.getElementById('smokeCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+<div class="gallery" aria-label="Galeri karya seni daur ulang">
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Botol Menari</span>
+      <span class="status">Plastik</span>
+    </div>
+  </article>
 
-  const particles = [];
-  const color = 'rgba(232, 255, 215, 0.15)';
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1602526217039-b92ef8aa2c1b?auto=format&fit=crop&w=600&q=80" alt="Lukisan dari kertas bekas" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Kolase Harapan</span>
+      <span class="status">Kertas</span>
+    </div>
+  </article>
 
-  class Particle {
-    constructor(x, y) {
-      this.x = x;
-      this.y = y;
-      this.size = Math.random() * 20 + 10;
-      this.alpha = 1;
-      this.speedX = (Math.random() - 0.5) * 1;
-      this.speedY = (Math.random() - 0.5) * 1;
-    }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      this.alpha -= 0.01;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.fillStyle = color;
-      ctx.globalAlpha = this.alpha;
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    }
-  }
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80" alt="Kerajinan logam bekas" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Besi Tua Hidup</span>
+      <span class="status">Logam</span>
+    </div>
+  </article>
 
-  function handleParticles() {
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-      if (particles[i].alpha <= 0) {
-        particles.splice(i, 1);
-        i--;
-      }
-    }
-  }
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1529688530642-93e3357bcdbb?auto=format&fit=crop&w=600&q=80" alt="Mozaik dari pecahan kaca" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Refleksi Hijau</span>
+      <span class="status">Kaca</span>
+    </div>
+  </article>
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    handleParticles();
-    requestAnimationFrame(animate);
-  }
-  animate();
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1617688281702-4e538df0b6a0?auto=format&fit=crop&w=600&q=80" alt="Instalasi daur ulang campuran" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Tanpa Judul</span>
+      <span class="status">Tidak Dijual</span>
+    </div>
+  </article>
+</div>
 
-  window.addEventListener('resize', () => {
+  </div>
+
+  <script>
+    const canvas = document.getElementById('smokeCanvas');
+    const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-  });
 
-  document.addEventListener('mousemove', (e) => {
-    for (let i = 0; i < 3; i++) {
-      particles.push(new Particle(e.clientX, e.clientY));
+    const particles = [];
+    const color = 'rgba(232, 255, 215, 0.15)';
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 20 + 10;
+        this.alpha = 1;
+        this.speedX = (Math.random() - 0.5) * 1;
+        this.speedY = (Math.random() - 0.5) * 1;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.alpha -= 0.01;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.fillStyle = color;
+        ctx.globalAlpha = this.alpha;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
     }
-  });
 
-  // Tilt effect
+    function handleParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+        if (particles[i].alpha <= 0) {
+          particles.splice(i, 1);
+          i--;
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      handleParticles();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      for (let i = 0; i < 3; i++) {
+        particles.push(new Particle(e.clientX, e.clientY));
+      }
+    });
+  </script>
+
+<script>
   const cards = document.querySelectorAll(".card");
+
   cards.forEach(card => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
+
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const rotateX = -(y - centerY) * 0.05;
+
+      const rotateX = -(y - centerY) * 0.05; // Atur sensitivitas di sini
       const rotateY = (x - centerX) * 0.05;
+
       card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
     });
+
     card.addEventListener("mouseleave", () => {
       card.style.transform = "rotateX(0) rotateY(0) scale(1)";
     });
   });
 </script>
+
 </body>
 </html>
