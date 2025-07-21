@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form Setor Sampah | EcoWaste</title>
+    <title>DaurRupa - Solusi Pengelolaan Sampah Modern</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
@@ -20,6 +20,7 @@
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
             background-color: #f8f9fa;
+            color: #333;
         }
 
         /* Navbar Styles */
@@ -37,6 +38,7 @@
             color: var(--primary-color) !important;
             display: flex;
             align-items: center;
+            font-size: 1.5rem;
         }
 
         .navbar-brand i {
@@ -50,6 +52,7 @@
             font-weight: 500;
             margin: 0 10px;
             position: relative;
+            transition: all 0.3s;
         }
 
         .nav-link:hover {
@@ -83,171 +86,262 @@
         .btn-nav:hover {
             background-color: var(--primary-color);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         /* Hero Section */
-        .hero-section {
+        .main-hero {
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
             overflow: hidden;
-            margin-top: -72px;
-            padding-top: 120px;
-        }
-
-        .hero-section .bg-image {
-            position: absolute;
-            inset: 0;
-            background: url('../assets/img/banner.jpg') no-repeat center center/cover;
-            filter: blur(4px) brightness(0.6);
-            z-index: -1;
-        }
-
-        .contact-form {
-            background-color: rgba(62, 95, 68, 0.9);
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('assets/img/banner2.jpg') no-repeat center center/cover;
             color: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 500px;
-            transition: transform 0.3s ease;
-            backdrop-filter: blur(5px);
         }
 
-        .contact-form:hover {
-            transform: translateY(-5px);
+        .hero-content {
+            max-width: 600px;
         }
 
-        .form-label {
-            font-weight: 500;
-            color: white;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-control,
-        .form-select,
-        textarea {
-            background-color: transparent;
-            color: white;
-            border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 0;
-            box-shadow: none;
-            padding-left: 0;
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
+            line-height: 1.2;
         }
 
-        .form-control:focus,
-        .form-select:focus,
-        textarea:focus {
-            box-shadow: none;
-            border-color: var(--accent-color);
-            background-color: transparent;
-            color: rgb(73, 47, 47);
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
 
-        .form-control::placeholder,
-        textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-            opacity: 1;
-        }
-
-        .btn-gradient {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 30px;
+        .btn-hero {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
             font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: none;
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
         }
 
-        .btn-gradient:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            opacity: 0.95;
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: white;
         }
 
-        .btn-loading {
-            pointer-events: none;
+        .btn-hero-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        .btn-hero-outline:hover {
+            background-color: white;
+            color: var(--primary-color);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
             position: relative;
-            padding-right: 40px !important;
+            display: inline-block;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 700;
         }
 
-        .btn-loading::after {
+        .section-title::after {
             content: "";
             position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1rem;
-            height: 1rem;
-            border: 2px solid white;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
         }
 
-        @keyframes spin {
-            to {
-                transform: translateY(-50%) rotate(360deg);
-            }
-        }
-
-        .clickable-card {
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
             height: 100%;
-            border: none;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .clickable-card:hover {
+        .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .clickable-card.bg-white:hover {
-            background-color: var(--secondary-color) !important;
-            color: white !important;
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
         }
 
-        .clickable-card.bg-white:hover i,
-        .clickable-card.bg-white:hover .counter {
-            color: white !important;
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
 
-        .bg-green {
-            background-color: var(--secondary-color) !important;
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+            position: relative;
+            overflow: hidden;
         }
 
-        .text-light-green {
-            color: var(--accent-color) !important;
+        .step-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+            height: 100%;
         }
 
-        .section-cta {
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+        }
+
+        .stats-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/assets/img/banner1.jpg') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .counter {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .testimonial-card {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            margin: 15px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            color: var(--accent-color);
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .author-name {
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        .author-title {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             position: relative;
             overflow: hidden;
         }
 
-        .section-cta::before {
+        .cta-section::before {
             content: "";
             position: absolute;
             top: 0;
-            right: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background: url('https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
@@ -255,48 +349,31 @@
             z-index: 0;
         }
 
-        .counter {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .section-title {
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
             position: relative;
-            display: inline-block;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: var(--primary-color);
-        }
-
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background-color: var(--secondary-color);
-        }
-
-        .form-icon {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .form-group {
-            position: relative; 
+            opacity: 0.9;
         }
 
         /* Footer Styles */
         footer {
             background-color: var(--primary-color);
             color: white;
-            padding: 50px 0 20px;
+            padding: 80px 0 20px;
         }
 
         .footer-logo {
@@ -374,7 +451,7 @@
         .copyright {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
-            margin-top: 30px;
+            margin-top: 50px;
             text-align: center;
             opacity: 0.7;
             font-size: 0.9rem;
@@ -397,6 +474,17 @@
             .nav-link.active::after {
                 display: none;
             }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .btn-hero, .btn-hero-outline {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+                margin-left: 0;
+            }
         }
     </style>
 </head>
@@ -415,10 +503,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Beranda</a>
+                        <a class="nav-link active" href="#">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Setor Sampah</a>
+                        <a class="nav-link" href="#">Layanan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Gallery</a>
@@ -440,107 +528,188 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="bg-image"></div>
-        <div class="contact-form">
-            <h3 class="text-center fw-bold mb-4">FORM SETOR SAMPAH</h3>
-            <p class="text-center mb-4" style="opacity: 0.8;">Lengkapi form berikut untuk proses setor sampah</p>
-            
-            <form>
-                <div class="form-group">
-                    <label class="form-label">Nama Lengkap</label>
-                    <input type="text" class="form-control" placeholder="Masukkan nama lengkap Anda" />
-                    <i class="bi bi-person form-icon"></i>
+    <section class="main-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Kelola Sampah dengan Cara Modern</h1>
+                        <p class="hero-subtitle">DaurRupa memberikan solusi pengelolaan sampah terpadu untuk lingkungan yang lebih bersih dan berkelanjutan.</p>
+                        <div class="d-flex flex-wrap">
+                            <button class="btn btn-hero">
+                                <i class="bi bi-arrow-right-circle-fill me-2"></i> Mulai Sekarang
+                            </button>
+                            <button class="btn btn-hero btn-hero-outline">
+                                <i class="bi bi-play-circle-fill me-2"></i> Lihat Demo
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" placeholder="Masukkan alamat email aktif" />
-                    <i class="bi bi-envelope form-icon"></i>
+                <div class="col-lg-6 d-none d-lg-block h-20">
+                    <img src="assets/img/banner3.jpg" alt="Waste Management" class="img-fluid rounded-3 shadow-lg">
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Jenis Sampah</label>
-                    <select class="form-select">
-                        <option selected disabled>Pilih jenis sampah</option>
-                        <option>Organik (Sisa makanan, daun, dll)</option>
-                        <option>Anorganik (Plastik, kertas, logam)</option>
-                        <option>B3 (Baterai, elektronik, lampu)</option>
-                        <option>Lainnya</option>
-                    </select>
-                    <i class="bi bi-trash form-icon"></i>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Estimasi Berat (kg)</label>
-                    <select class="form-select">
-                        <option selected disabled>Pilih estimasi berat</option>
-                        <option>1-5 kg</option>
-                        <option>5-10 kg</option>
-                        <option>10-20 kg</option>
-                        <option>20+ kg</option>
-                    </select>
-                    <i class="bi bi-speedometer2 form-icon"></i>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Catatan Tambahan</label>
-                    <textarea class="form-control" rows="3" placeholder="Tulis catatan tambahan jika diperlukan..."></textarea>
-                </div>
-                
-                <button id="submitBtn" type="submit" class="btn-gradient w-100 mt-3">
-                    <i class="bi bi-send-fill me-2"></i> KIRIM PERMINTAAN
-                </button>
-            </form>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="text-center section-title">Layanan Kami</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-trash-fill"></i>
+                        </div>
+                        <h3 class="feature-title">Setor Sampah</h3>
+                        <p>Layanan setor sampah mudah dengan sistem penjemputan atau drop point terdekat di lokasi Anda.</p>
+                        <a href="#" class="text-decoration-none">Pelajari lebih lanjut →</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-recycle"></i>
+                        </div>
+                        <h3 class="feature-title">Daur Ulang</h3>
+                        <p>Proses daur ulang profesional untuk mengubah sampah menjadi produk bernilai tinggi.</p>
+                        <a href="#" class="text-decoration-none">Pelajari lebih lanjut →</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="bi bi-lightbulb-fill"></i>
+                        </div>
+                        <h3 class="feature-title">Edukasi</h3>
+                        <p>Program edukasi untuk masyarakat tentang pentingnya pengelolaan sampah yang bertanggung jawab.</p>
+                        <a href="#" class="text-decoration-none">Pelajari lebih lanjut →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="text-center section-title">Cara Kerja Kami</h2>
+            <div class="row g-4 mt-5">
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Daftar Akun</h3>
+                        <p>Buat akun DaurRupa secara gratis melalui website atau aplikasi mobile kami.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Jadwalkan Penjemputan</h3>
+                        <p>Atur jadwal penjemputan sampah melalui platform kami atau kunjungi drop point terdekat.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Dapatkan Reward</h3>
+                        <p>Dapatkan poin dan reward untuk setiap sampah yang Anda setorkan ke sistem kami.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Stats Section -->
-    <div class="container py-5">
-        <center>
-            <h2 class="text-center section-title">STATISTIK KAMI</h2>
-        </center>
-        <div class="row justify-content-center text-center g-4">
-            <div class="col-md-4 col-lg-3">
-                <div class="p-4 bg-white rounded clickable-card" onclick="alert('Anda mengklik statistik mitra')">
-                    <div class="counter mb-2" data-target="75">0</div>
-                    <h5 class="fw-bold">Mitra Bank Sampah</h5>
-                    <p class="text-muted">Mitra bank sampah yang bekerja sama dengan sistem kami</p>
-                    <i class="bi bi-people-fill text-light-green" style="font-size: 1.5rem;"></i>
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="counter" data-target="75">0</div>
+                        <div class="stat-label">Mitra Bank Sampah</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-lg-3">
-                <div class="p-4 bg-white rounded clickable-card" onclick="alert('Anda mengklik statistik pengguna')">
-                    <div class="counter mb-2" data-target="1250">+0</div>
-                    <h5 class="fw-bold">Pengguna Aktif</h5>
-                    <p class="text-muted">Masyarakat yang telah menggunakan layanan kami</p>
-                    <i class="bi bi-person-check-fill text-light-green" style="font-size: 1.5rem;"></i>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="counter" data-target="1250">+0</div>
+                        <div class="stat-label">Pengguna Aktif</div>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4 col-lg-3">
-                <div class="p-4 bg-white rounded clickable-card" onclick="alert('Anda mengklik statistik sampah')">
-                    <div class="counter mb-2" data-target="8420">+0</div>
-                    <h5 class="fw-bold">Kg Sampah Terkelola</h5>
-                    <p class="text-muted">Total sampah yang berhasil kami kelola</p>
-                    <i class="bi bi-recycle text-light-green" style="font-size: 1.5rem;"></i>
+                <div class="col-md-4">
+                    <div class="stat-item">
+                        <div class="counter" data-target="8420">+0</div>
+                        <div class="stat-label">Kg Sampah Terkelola</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Call to Action
-    <div class="section-cta text-center py-5">
-        <div class="container position-relative" style="z-index: 1;">
-            <h3 class="fw-bold mb-3">INGIN JADI MITRA KAMI?</h3>
-            <p class="mb-4 mx-auto" style="max-width: 600px;">
-                Tim kami siap membantu Anda 24/7 untuk segala pertanyaan terkait pengelolaan sampah. 
-                Jangan ragu untuk menjadi mitra kami .
-            </p>
-            <a href="#" class="btn btn-outline-light btn-lg px-4">
-                <i class="bi bi-telephone-fill me-2"></i> HUBUNGI KAMI
-            </a>
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="text-center section-title">Apa Kata Mereka</h2>
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            Sejak menggunakan DaurRupa, pengelolaan sampah di rumah menjadi lebih mudah dan terorganisir. Sistem rewardnya juga sangat memotivasi!
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="User" class="author-img">
+                            <div>
+                                <h5 class="author-name">Sarah Wijaya</h5>
+                                <p class="author-title">Ibu Rumah Tangga</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            Sebagai pengusaha kecil, program daur ulang DaurRupa membantu kami mengelola limbah usaha dengan lebih bertanggung jawab.
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="User" class="author-img">
+                            <div>
+                                <h5 class="author-name">Budi Santoso</h5>
+                                <p class="author-title">Pemilik UMKM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            Platform yang sangat inovatif! Sekolah kami sekarang memiliki program pengelolaan sampah yang lebih baik berkat DaurRupa.
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User" class="author-img">
+                            <div>
+                                <h5 class="author-name">Dewi Lestari</h5>
+                                <p class="author-title">Guru SD</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div> -->
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Siap Mengubah Sampah Menjadi Nilai?</h2>
+                <p class="cta-text">Bergabunglah dengan ribuan pengguna lainnya yang telah berkontribusi untuk lingkungan yang lebih bersih dan berkelanjutan.</p>
+                <button class="btn btn-hero">
+                    <i class="bi bi-arrow-right-circle-fill me-2"></i> Daftar Sekarang
+                </button>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -590,13 +759,13 @@
                         <ul>
                             <li><i class="bi bi-geo-alt-fill me-2"></i> Jl. Lingkungan Hijau No. 123, Jakarta</li>
                             <li><i class="bi bi-telephone-fill me-2"></i> (021) 1234-5678</li>
-                            <li><i class="bi bi-envelope-fill me-2"></i> info@ecowaste.id</li>
+                            <li><i class="bi bi-envelope-fill me-2"></i> info@daurrupa.id</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 EcoWaste. All Rights Reserved.</p>
+                <p>&copy; 2023 DaurRupa. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -642,43 +811,6 @@
         // Trigger animasi saat halaman dimuat
         window.addEventListener('load', () => {
             setTimeout(animateCounters, 500);
-        });
-    
-        // Animasi tombol submit
-        document.getElementById('submitBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const btn = this;
-            const originalText = btn.innerHTML;
-            
-            btn.classList.add('btn-loading');
-            btn.innerHTML = '<span>MEMPROSES...</span>';
-            
-            // Simulasi pengiriman data
-            setTimeout(() => {
-                btn.classList.remove('btn-loading');
-                btn.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i> TERKIRIM';
-                btn.disabled = true;
-                
-                // Reset tombol setelah 3 detik
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                }, 3000);
-            }, 2000);
-        });
-    
-        // Animasi hover untuk semua card
-        document.querySelectorAll('.clickable-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                const counter = card.querySelector('.counter');
-                if (counter) counter.style.color = 'white';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                const counter = card.querySelector('.counter');
-                if (counter) counter.style.color = '#3E5F44';
-            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
