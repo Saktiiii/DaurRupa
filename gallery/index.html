@@ -155,48 +155,72 @@
   <canvas id="smokeCanvas"></canvas>
 
   <div class="container" role="main">
-    <div class="filter-wrapper">
-      <label for="filter" class="visually-hidden">Pilih filter</label>
-      <select id="filter" name="filter" aria-label="Filter gambar galeri">
-        <option>Filter</option>
-        <option value="all">Semua</option>
-        <option value="dogs">Anjing</option>
-        <option value="cats">Kucing</option>
-        <option value="hors_vente">Tidak Dijual</option>
-      </select>
+<!-- hanya bagian <div class="filter-wrapper"> sampai </div class="gallery"> yang diperbarui -->
+<div class="filter-wrapper">
+  <label for="filter" class="visually-hidden">Pilih kategori</label>
+  <select id="filter" name="filter" aria-label="Filter karya daur ulang">
+    <option>Kategori</option>
+    <option value="all">Semua</option>
+    <option value="plastic">Plastik</option>
+    <option value="paper">Kertas</option>
+    <option value="metal">Logam</option>
+    <option value="glass">Kaca</option>
+    <option value="not_for_sale">Tidak Dijual</option>
+  </select>
+</div>
+
+<div class="gallery" aria-label="Galeri karya seni daur ulang">
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1581091870622-6a5f3960c4c5?auto=format&fit=crop&w=600&q=80" alt="Patung dari botol plastik" />
     </div>
-
-    <div class="gallery" aria-label="Galeri lukisan hewan anjing dan kucing">
-      <article class="card" tabindex="0">
-        <div style="position: relative;">
-          <img class="bw" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d929b4c8-a2cc-4722-b3ae-bb3c2e07ccd8.png" alt="Anjing" />
-        </div>
-        <div class="card-footer">
-          <span class="name">Rox</span>
-          <span class="status">Tidak Dijual</span>
-        </div>
-      </article>
-
-      <article class="card" tabindex="0">
-        <div style="position: relative;">
-          <img class="bw" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/370adef5-0c15-43c5-a79e-9fe487f13378.png" alt="Anjing" />
-        </div>
-        <div class="card-footer">
-          <span class="name">Snowie</span>
-          <span class="status">Tidak Dijual</span>
-        </div>
-      </article>
-
-      <article class="card" tabindex="0">
-        <div style="position: relative;">
-          <img class="bw" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b2d2a1d6-a890-4b8e-a8a6-a7663bc54c7e.png" alt="Kucing" />
-        </div>
-        <div class="card-footer">
-          <span class="name">Plume</span>
-          <span class="status">Tidak Dijual</span>
-        </div>
-      </article>
+    <div class="card-footer">
+      <span class="name">Botol Menari</span>
+      <span class="status">Plastik</span>
     </div>
+  </article>
+
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1602526217039-b92ef8aa2c1b?auto=format&fit=crop&w=600&q=80" alt="Lukisan dari kertas bekas" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Kolase Harapan</span>
+      <span class="status">Kertas</span>
+    </div>
+  </article>
+
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80" alt="Kerajinan logam bekas" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Besi Tua Hidup</span>
+      <span class="status">Logam</span>
+    </div>
+  </article>
+
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1529688530642-93e3357bcdbb?auto=format&fit=crop&w=600&q=80" alt="Mozaik dari pecahan kaca" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Refleksi Hijau</span>
+      <span class="status">Kaca</span>
+    </div>
+  </article>
+
+  <article class="card" tabindex="0">
+    <div style="position: relative;">
+      <img class="bw" src="https://images.unsplash.com/photo-1617688281702-4e538df0b6a0?auto=format&fit=crop&w=600&q=80" alt="Instalasi daur ulang campuran" />
+    </div>
+    <div class="card-footer">
+      <span class="name">Tanpa Judul</span>
+      <span class="status">Tidak Dijual</span>
+    </div>
+  </article>
+</div>
+
   </div>
 
   <script>
