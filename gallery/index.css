@@ -31,9 +31,9 @@
       width: 100%;
       display: flex;
       flex-direction: row;
-      display: flex;
-      flex-direction: column; /* ✅ ganti dari row ke column */
       gap: 2rem;
+      background: #fafafa;
+      padding: 2rem;
       border-radius: 12px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.05), 0 6px 15px rgba(0,0,0,0.08);
       position: relative;
@@ -47,30 +47,28 @@
       gap: 1.5rem;
     }
 
-.card {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #000;
-}
+    .card {
+      position: relative;
+      background: #111;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease;
+      will-change: transform;
+    }
 
-.card:hover {
-  transform: translateY(-10px) scale(1.02); /* Gerakan ke atas & membesar */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* Bayangan lebih tebal saat hover */
-}
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.75);
+    }
 
-.card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  transition: transform 0.3s ease;
-}
-
-.card:hover img {
-  transform: scale(1.05); /* Sedikit zoom-in saat hover */
-}
+    .card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      border-radius: 0;
+    }
 
     .card::before {
       content: "";
@@ -81,16 +79,18 @@
       pointer-events: none;
       z-index: 1;
     }
-    
-.card-footer {
-  padding: 12px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #E8FFD7;
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  font-size: 0.95rem;
-}
+
+    .card-footer {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      background: linear-gradient(to top, #1a1a1a, transparent);
+      color: #E8FFD7;
+      z-index: 2;
+    }
 
     /* ===== Accordion Filter Styles ===== */
     .filter-wrapper {
