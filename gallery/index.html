@@ -248,7 +248,7 @@
   <div class="container" role="main">
 <div class="filter-panel">
   <details open>
-    <summary>Menyaring</summary>
+    <summary>Filter</summary>
     <div class="filter-content">
       <div class="filter-input">
         <input id="searchInput" type="text" placeholder="Untuk meneliti..." />
@@ -262,11 +262,19 @@
       <hr />
 
       <div class="filter-category">
-        <span>KATEGORI</span>
+        <span>Kategori</span>
         <div class="category-buttons">
           <button class="cat-btn" data-category="baju">Baju</button>
           <button class="cat-btn" data-category="peralatan">Peralatan</button>
           <button class="cat-btn" data-category="dekorasi">Dekorasi</button>
+        </div>
+      </div>
+      <div class="filter-category">
+        <span>Bahan</span>
+        <div class="category-buttons">
+          <button class="cat-btn" data-category="baju">Plastik</button>
+          <button class="cat-btn" data-category="peralatan">Kertas</button>
+          <button class="cat-btn" data-category="dekorasi">Kardus</button>
         </div>
       </div>
 
@@ -394,28 +402,71 @@
   </script>
 
 <script>
-  const cards = document.querySelectorAll(".card");
+  const searchInput = document.getElementById('searchInput');
+  const availableCheckbox = document.getElementById('availableOnly');
+  const categoryButtons = document.querySelectorAll('.cat-btn');
+  const cards = document.querySelectorAll('.card');
+  const resetBtn = document.getElementById('resetFilter');
+  const itemCount = document.getElementById('itemCount');
 
-  cards.forEach(card => {
-    card.addEventListener("mousemove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+  let selectedCategory = "";
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
+  function filterCards() {
+    const keyword = searchInput.value.toLowerCase();
+    const availableOnly = availableCheckbox.checked;
 
-      const rotateX = -(y - centerY) * 0.05; // Atur sensitivitas di sini
-      const rotateY = (x - centerX) * 0.05;
+    let visibleCount = 0;
 
-      card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    cards.forEach(card => {
+      const name = card.dataset.name.toLowerCase();
+      const category = card.dataset.category;
+      const isAvailable = !category.includes("not_for_sale");
+
+      const matchKeyword = name.includes(keyword);
+      const matchCategory = selectedCategory === "" || category.includes(selectedCategory);
+      const matchAvailability = !availableOnly || isAvailable;
+
+      const isVisible = matchKeyword && matchCategory && matchAvailability;
+
+      card.style.display = isVisible ? "block" : "none";
+      if (isVisible) visibleCount++;
     });
 
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "rotateX(0) rotateY(0) scale(1)";
+    itemCount.textContent = `${visibleCount} dari ${cards.length} karya`;
+    resetBtn.disabled = keyword === "" && !availableOnly && selectedCategory === "";
+  }
+
+  searchInput.addEventListener("input", filterCards);
+  availableCheckbox.addEventListener("change", filterCards);
+
+  categoryButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (btn.classList.contains("active")) {
+        btn.classList.remove("active");
+        selectedCategory = "";
+      } else {
+        categoryButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedCategory = btn.dataset.category;
+      }
+      filterCards();
     });
   });
+
+  resetBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    availableCheckbox.checked = false;
+    selectedCategory = "";
+    categoryButtons.forEach(b => b.classList.remove("active"));
+    filterCards();
+  });
+
+  // Inisialisasi
+  filterCards();
 </script>
+
+
+
 
 </body>
 </html>
