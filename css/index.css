@@ -179,6 +179,69 @@
             align-items: center;
             justify-content: center;
         }
+/* Container utama */
+.riwayat-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
+  
+  /* Judul Halaman */
+  .riwayat-container h2 {
+    text-align: center;
+    color: #2e7d32;
+    margin-bottom: 30px;
+  }
+  
+  /* Dropdown selector */
+  .riwayat-select {
+    margin-bottom: 20px;
+    text-align: right;
+  }
+  
+  .riwayat-select select {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    font-size: 1em;
+  }
+  
+  /* Tabel Riwayat */
+  .riwayat-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .riwayat-table th, .riwayat-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .riwayat-table th {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    font-weight: bold;
+  }
+  
+  .riwayat-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Animasi saat switch */
+  .fade-in {
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
 
         /* Footer */
         footer {
