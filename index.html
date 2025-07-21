@@ -27,7 +27,7 @@
                 <a href="#about" class="btn">Explore More</a>
             </div>
         </div>
-    </section>
+    </section>    
 
     <!-- About Section -->
     <section class="content" id="about">
@@ -101,6 +101,25 @@
         </div>
     </section>
 
+    <!-- RiwayatSection -->
+    <section class="riwayat-container">
+        <h2>Riwayat</h2>
+        
+        <div class="riwayat-select">
+          <label for="riwayat-select">Tampilkan:</label>
+          <select id="riwayat-select" onchange="switchRiwayat()">
+            <option value="setor">Riwayat Setor</option>
+            <option value="poin">Transaksi Poin</option>
+          </select>
+        </div>
+      
+        <table class="riwayat-table fade-in">
+          <thead id="table-head">
+          </thead>
+          <tbody id="table-body">
+          </tbody>
+        </table>
+      </section>
     <!-- Contact Section -->
     <section class="content content-dark" id="contact">
         <div style="max-width: 800px; margin: 0 auto; text-align: center;">
@@ -171,6 +190,57 @@
                 this.style.transform = 'scale(1)';
             });
         });
+
+        // Tambahkan event listener setelah DOM siap
+document.addEventListener('DOMContentLoaded', function () {
+    const riwayatSelect = document.getElementById("riwayat-select");
+    const head = document.getElementById("table-head");
+    const body = document.getElementById("table-body");
+
+    // Jalankan saat dropdown berubah
+    riwayatSelect.addEventListener("change", function () {
+        const tipe = riwayatSelect.value;
+
+        // Tambah animasi
+        head.classList.add("fade-in");
+        body.classList.add("fade-in");
+
+        if (tipe === "setor") {
+            head.innerHTML = `
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Jenis Sampah</th>
+                    <th>Berat (kg)</th>
+                    <th>Poin</th>
+                </tr>`;
+            body.innerHTML = `
+                <tr><td>15 Juli</td><td>Plastik</td><td>2</td><td>40</td></tr>
+                <tr><td>18 Juli</td><td>Kertas</td><td>1</td><td>15</td></tr>
+            `;
+        } else if (tipe === "poin") {
+            head.innerHTML = `
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Deskripsi</th>
+                    <th>Poin</th>
+                </tr>`;
+            body.innerHTML = `
+                <tr><td>16 Juli</td><td>Penukaran Hadiah</td><td>-50</td></tr>
+                <tr><td>19 Juli</td><td>Bonus Kegiatan</td><td>+20</td></tr>
+            `;
+        }
+
+        // Hapus kelas animasi setelah selesai
+        setTimeout(() => {
+            head.classList.remove("fade-in");
+            body.classList.remove("fade-in");
+        }, 500);
+    });
+
+    // Jalankan saat halaman dimuat pertama kali
+    riwayatSelect.dispatchEvent(new Event('change'));
+});
+
     </script>
 </body>
 </html>
