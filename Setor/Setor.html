@@ -7,6 +7,8 @@
     <title>Form Setor Sampah | EcoWaste</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
 
     <style>
         :root {
@@ -241,6 +243,10 @@
             color: white;
             position: relative;
             overflow: hidden;
+            /* Tetap hijau */
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
         }
 
         .section-cta::before {
@@ -289,7 +295,7 @@
         }
 
         .form-group {
-            position: relative; 
+            position: relative;
         }
 
         /* Footer Styles */
@@ -389,14 +395,106 @@
                 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
                 margin-top: 15px;
             }
-            
+
             .nav-link {
                 margin: 10px 0;
             }
-            
+
             .nav-link.active::after {
                 display: none;
             }
+        }
+
+        .bg-section {
+            background: url('../assets/img/banner1.jpg');
+
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .rectangle-box {
+            width: 620px;
+            height: 380px;
+            background-color: rgba(199, 199, 199, 0.4);
+            /* warna gelap transparan */
+            backdrop-filter: blur(8px);
+            /* efek blur */
+            -webkit-backdrop-filter: blur(8px);
+            /* untuk Safari */
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 20px;
+            color: #f4f4f4;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .poin-angka {
+            font-size: 4rem;
+            /* Kamu bisa sesuaikan, misal 3rem atau 5rem */
+            font-weight: bold;
+            margin-top: 40px;
+        }
+        
+
+
+
+        .rectangle-box {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            border-radius: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .poin-angka {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin: 0;
+        }
+
+        .badge-list {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge-custom {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-yellow {
+            background-color: #ffdd57;
+            color: #333;
+        }
+
+        .bg-gray {
+            background-color: #e6e6e6;
+            color: #333;
+        }
+
+        .bg-orange {
+            background-color: #f4a261;
+            color: white;
+        }
+
+        .bg-green {
+            background-color: #4CAF50;
+            color: white;
         }
     </style>
 </head>
@@ -409,7 +507,8 @@
                 <i class="bi bi-recycle"></i>
                 DaurRupa
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -445,20 +544,20 @@
         <div class="contact-form">
             <h3 class="text-center fw-bold mb-4">FORM SETOR SAMPAH</h3>
             <p class="text-center mb-4" style="opacity: 0.8;">Lengkapi form berikut untuk proses setor sampah</p>
-            
+
             <form>
                 <div class="form-group">
                     <label class="form-label">Nama Lengkap</label>
                     <input type="text" class="form-control" placeholder="Masukkan nama lengkap Anda" />
                     <i class="bi bi-person form-icon"></i>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control" placeholder="Masukkan alamat email aktif" />
                     <i class="bi bi-envelope form-icon"></i>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label">Jenis Sampah</label>
                     <select class="form-select">
@@ -470,7 +569,7 @@
                     </select>
                     <i class="bi bi-trash form-icon"></i>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label">Estimasi Berat (kg)</label>
                     <select class="form-select">
@@ -482,12 +581,13 @@
                     </select>
                     <i class="bi bi-speedometer2 form-icon"></i>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="form-label">Catatan Tambahan</label>
-                    <textarea class="form-control" rows="3" placeholder="Tulis catatan tambahan jika diperlukan..."></textarea>
+                    <textarea class="form-control" rows="3"
+                        placeholder="Tulis catatan tambahan jika diperlukan..."></textarea>
                 </div>
-                
+
                 <button id="submitBtn" type="submit" class="btn-gradient w-100 mt-3">
                     <i class="bi bi-send-fill me-2"></i> KIRIM PERMINTAAN
                 </button>
@@ -528,19 +628,24 @@
         </div>
     </div>
 
-    <!-- Call to Action
-    <div class="section-cta text-center py-5">
-        <div class="container position-relative" style="z-index: 1;">
-            <h3 class="fw-bold mb-3">INGIN JADI MITRA KAMI?</h3>
-            <p class="mb-4 mx-auto" style="max-width: 600px;">
-                Tim kami siap membantu Anda 24/7 untuk segala pertanyaan terkait pengelolaan sampah. 
-                Jangan ragu untuk menjadi mitra kami .
-            </p>
-            <a href="#" class="btn btn-outline-light btn-lg px-4">
-                <i class="bi bi-telephone-fill me-2"></i> HUBUNGI KAMI
-            </a>
+    <div class="section-cta">
+        <div class="container">
+            <h2 class="fw-bold mb-2">TOTAL POIN ANDA</h2>
+            <p class="mb-4">Kumpulkan lebih banyak poin dengan mendaur ulang sampah</p>
+
+            <!-- Kartu poin -->
+            <div class="rectangle-box">
+                <div class="d-flex justify-content-center mb-2">
+                    <lottie-player src="../assets/img/json/poin.json"
+                        background="transparent" speed="1" style="width: 130px; height: 130px;" loop autoplay>
+                    </lottie-player>
+                </div>
+                <p class="poin-angka">2.450</p>
+                <h6 class="fw-bold text-white">Total Poin</h6>
+                <p class="text-white-50 mb-0">Poin yang telah Anda kumpulkan dari aktivitas daur ulang</p>
+            </div>
         </div>
-    </div> -->
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -551,7 +656,8 @@
                         <span class="footer-logo">
                             <i class="bi bi-recycle"></i> DaurRupa
                         </span>
-                        <p>Platform pengelolaan sampah modern yang menghubungkan masyarakat dengan bank sampah terdekat untuk menciptakan lingkungan yang lebih bersih dan sehat.</p>
+                        <p>Platform pengelolaan sampah modern yang menghubungkan masyarakat dengan bank sampah terdekat
+                            untuk menciptakan lingkungan yang lebih bersih dan sehat.</p>
                         <div class="social-icons">
                             <a href="#"><i class="bi bi-facebook"></i></a>
                             <a href="#"><i class="bi bi-twitter"></i></a>
@@ -608,24 +714,24 @@
             const animationDuration = 2000; // Durasi animasi dalam milidetik
             const frameDuration = 1000 / 60; // 60 fps
             const totalFrames = Math.round(animationDuration / frameDuration);
-            
+
             counters.forEach(counter => {
                 const target = parseInt(counter.getAttribute('data-target').replace('+', ''));
                 const start = 0;
                 const isPlusFormat = counter.getAttribute('data-target').includes('+');
                 let frame = 0;
-                
+
                 const counterAnimation = setInterval(() => {
                     frame++;
                     const progress = frame / totalFrames;
                     const currentValue = Math.round(start + (progress * (target - start)));
-                    
+
                     if (isPlusFormat) {
                         counter.innerText = `+${currentValue}`;
                     } else {
                         counter.innerText = currentValue;
                     }
-                    
+
                     if (frame === totalFrames) {
                         clearInterval(counterAnimation);
                         // Pastikan nilai akhir tepat seperti target
@@ -638,28 +744,28 @@
                 }, frameDuration);
             });
         };
-    
+
         // Trigger animasi saat halaman dimuat
         window.addEventListener('load', () => {
             setTimeout(animateCounters, 500);
         });
-    
+
         // Animasi tombol submit
-        document.getElementById('submitBtn').addEventListener('click', function(e) {
+        document.getElementById('submitBtn').addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const btn = this;
             const originalText = btn.innerHTML;
-            
+
             btn.classList.add('btn-loading');
             btn.innerHTML = '<span>MEMPROSES...</span>';
-            
+
             // Simulasi pengiriman data
             setTimeout(() => {
                 btn.classList.remove('btn-loading');
                 btn.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i> TERKIRIM';
                 btn.disabled = true;
-                
+
                 // Reset tombol setelah 3 detik
                 setTimeout(() => {
                     btn.innerHTML = originalText;
@@ -667,14 +773,14 @@
                 }, 3000);
             }, 2000);
         });
-    
+
         // Animasi hover untuk semua card
         document.querySelectorAll('.clickable-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
                 const counter = card.querySelector('.counter');
                 if (counter) counter.style.color = 'white';
             });
-            
+
             card.addEventListener('mouseleave', () => {
                 const counter = card.querySelector('.counter');
                 if (counter) counter.style.color = '#3E5F44';
