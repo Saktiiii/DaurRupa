@@ -458,3 +458,48 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
+
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.pagination-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.pagination-item button {
+  background-color: white;
+  border: 1px solid #5E936C;
+  color: #3E5F44;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  min-width: 40px;
+  font-size: 1rem;
+}
+
+.pagination-item button:hover:not(:disabled) {
+  background-color: #E8FFD7;
+  color: #3E5F44;
+}
+
+.pagination-item.active button {
+  background-color: #93DA97;
+  color: #3E5F44;
+  border-color: #5E936C;
+  font-weight: 600;
+  box-shadow: 0 0 0 2px #E8FFD7;
+}
+
+.pagination-item.disabled button {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
