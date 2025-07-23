@@ -104,7 +104,7 @@
         /* Header Edukasi */
         .edu-header {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+                url('../assets/img/edu.jpg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -281,6 +281,123 @@
                 padding: 50px 0;
             }
         }
+          /* Footer Styles */
+          footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 0 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-logo i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h5 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 50px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .navbar-collapse {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                margin-top: 15px;
+            }
+            
+            .nav-link {
+                margin: 10px 0;
+            }
+            
+            .nav-link.active::after {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .btn-hero, .btn-hero-outline {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+                margin-left: 0;
+            }
+        }
     </style>
 </head>
 
@@ -297,19 +414,19 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link " href="index.html">Beranda</a>
+                    <a class="nav-link " href="../index.html">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../Setor/Setor.html">Setor Sampah</a>
+                    <a class="nav-link" href="../Layanan/layanan.html">Layanan</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../gallery/index.html">Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="edukasi/edukasi.html">Edukasi</a>
+                    <a class="nav-link active" href="#">Edukasi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tentang Kami</a>
+                    <a class="nav-link" href="../about/about.html">Tentang Kami</a>
                 </li>
                 <li class="nav-item ms-lg-2">
                     <a class="nav-link btn-nav" href="#">
@@ -341,7 +458,7 @@
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="edu-card">
-                        <img src="https://images.unsplash.com/photo-1587135991058-8816a1a7e7ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                        <img src="../assets/img/sam.jpg"
                             alt="Pemilahan Sampah">
                         <div class="edu-card-body">
                             <span class="badge-category">Dasar-dasar</span>
@@ -538,56 +655,60 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white pt-5 pb-3">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5 class="fw-bold mb-3">
-                        <i class="bi bi-recycle me-2"></i>DaurRupa
-                    </h5>
-                    <p>Solusi pengelolaan sampah modern untuk lingkungan yang lebih bersih dan berkelanjutan.</p>
-                    <div class="social-icons">
-                        <a href="#" class="text-white me-2"><i class="bi bi-facebook fs-5"></i></a>
-                        <a href="#" class="text-white me-2"><i class="bi bi-twitter fs-5"></i></a>
-                        <a href="#" class="text-white me-2"><i class="bi bi-instagram fs-5"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                    <div class="footer-about">
+                        <span class="footer-logo">
+                            <i class="bi bi-recycle"></i> DaurRupa
+                        </span>
+                        <p>Platform pengelolaan sampah modern yang menghubungkan masyarakat dengan bank sampah terdekat untuk menciptakan lingkungan yang lebih bersih dan sehat.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="col-lg-2 col-md-4 mb-4">
-                    <h5 class="fw-bold mb-3">Tautan</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Beranda</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Layanan</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Edukasi</a></li>
-                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Tentang Kami</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Tentang Kami</a></li>
-                    </ul>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Tautan Cepat</h5>
+                        <ul>
+                            <li><a href="#">Beranda</a></li>
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Layanan</a></li>
+                            <li><a href="#">Bank Sampah</a></li>
+                            <li><a href="#">Tentang Kami</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="col-lg-3 col-md-4 mb-4">
-                    <h5 class="fw-bold mb-3">Tentang Kami</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i> Jl. Hijau Lestari No. 45, Jakarta</li>
-                        <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i> (021) 1234-5678</li>
-                        <li><i class="bi bi-envelope-fill me-2"></i> info@daurrupa.id</li>
-                    </ul>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Layanan Kami</h5>
+                        <ul>
+                            <li><a href="#">Setor Sampah</a></li>
+                            <li><a href="#">Penjemputan Sampah</a></li>
+                            <li><a href="#">Daur Ulang</a></li>
+                            <li><a href="#">Edukasi Lingkungan</a></li>
+                            <li><a href="#">Pelacakan Sampah</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="col-lg-3 col-md-4 mb-4">
-                    <h5 class="fw-bold mb-3">Newsletter</h5>
-                    <p>Dapatkan informasi terbaru tentang pengelolaan sampah.</p>
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email Anda">
-                        <button class="btn btn-success" type="button">Daftar</button>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Tentang Kami Kami</h5>
+                        <ul>
+                            <li><i class="bi bi-geo-alt-fill me-2"></i> Jl. Lingkungan Hijau No. 123, Jakarta</li>
+                            <li><i class="bi bi-telephone-fill me-2"></i> (021) 1234-5678</li>
+                            <li><i class="bi bi-envelope-fill me-2"></i> info@daurrupa.id</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-
-            <hr class="my-4">
-
-            <div class="text-center">
-                <p class="mb-0">&copy; 2023 DaurRupa. All rights reserved.</p>
+            <div class="copyright">
+                <p>&copy; 2023 DaurRupa. All Rights Reserved.</p>
             </div>
         </div>
     </footer>

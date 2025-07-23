@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layanan - DaurRupa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+    <style>
+        :root {
+            --primary-color: #3E5F44;
+            --secondary-color: #5E936C;
+            --accent-color: #93DA97;
+            --light-color: #E8FFD7;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .navbar-brand i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .btn-nav {
+            background-color: var(--secondary-color);
+            color: white !important;
+            border-radius: 30px;
+            padding: 8px 20px !important;
+        }
+
+        /* Service Header */
+        .service-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('../assets/img/Layanan.jpg') no-repeat center center/cover;
+            padding: 120px 0 80px;
+            color: white;
+            text-align: center;
+        }
+
+        .service-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .service-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Service Cards */
+        .service-section {
+            padding: 80px 0;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .service-body {
+            padding: 25px;
+        }
+
+        .service-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .btn-service {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .btn-service:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background-color: var(--light-color);
+            padding: 80px 0;
+        }
+
+        .step-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .service-header {
+                padding: 80px 0 50px;
+            }
+            
+            .service-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-recycle"></i>
+                DaurRupa
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Layanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../gallery/index.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../edukasi/edukasi.html">Edukasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about/about.html">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link btn-nav" href="login/login.html">
+                            <i class="bi bi-person-fill me-1"></i> Masuk
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Header -->
+    <section class="service-header">
+        <div class="container">
+            <h1>Layanan DaurRupa</h1>
+            <p>Solusi lengkap untuk pengelolaan sampah dan daur ulang yang modern dan terintegrasi</p>
+        </div>
+    </section>
+
+    <!-- Service Cards -->
+    <section class="service-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <img src="../assets/img/ses.jpg" alt="Setor Sampah" class="service-img">
+                        <div class="service-body">
+                            <div class="service-icon">
+                                <i class="bi bi-trash-fill"></i>
+                            </div>
+                            <h3 class="service-title">Setor Sampah</h3>
+                            <p>Layanan setor sampah mudah dengan sistem penjemputan atau drop point terdekat di lokasi Anda. Dapatkan poin untuk setiap sampah yang Anda setorkan.</p>
+                            <a href="../Setor/Setor.html" class="btn btn-service">Gunakan Layanan</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <img src="../assets/img/karya.jpg" alt="Pamerkan Karya" class="service-img">
+                        <div class="service-body">
+                            <div class="service-icon">
+                                <i class="bi bi-images"></i>
+                            </div>
+                            <h3 class="service-title">Pamerkan Karya</h3>
+                            <p>Platform untuk memamerkan karya daur ulang kreatif Anda. Bagikan ide dan inspirasi dengan komunitas pecinta lingkungan.</p>
+                            <a href="../gallery/index.html" class="btn btn-service">Lihat Gallery</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Daur Ulang" class="service-img">
+                        <div class="service-body">
+                            <div class="service-icon">
+                                <i class="bi bi-recycle"></i>
+                            </div>
+                            <h3 class="service-title">Daur Ulang</h3>
+                            <p>Proses daur ulang profesional untuk mengubah sampah menjadi produk bernilai tinggi. Kami bekerja dengan mitra daur ulang terpercaya.</p>
+                            <a href="#" class="btn btn-service">Pelajari Lebih Lanjut</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mt-3">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Edukasi" class="service-img">
+                        <div class="service-body">
+                            <div class="service-icon">
+                                <i class="bi bi-lightbulb-fill"></i>
+                            </div>
+                            <h3 class="service-title">Edukasi</h3>
+                            <p>Program edukasi untuk masyarakat tentang pentingnya pengelolaan sampah yang bertanggung jawab dan teknik daur ulang sederhana.</p>
+                            <a href="../edukasi/edukasi.html" class="btn btn-service">Mulai Belajar</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mt-3">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bank Sampah" class="service-img">
+                        <div class="service-body">
+                            <div class="service-icon">
+                                <i class="bi bi-bank"></i>
+                            </div>
+                            <h3 class="service-title">Bank Sampah</h3>
+                            <p>Jaringan bank sampah terintegrasi yang memudahkan Anda mengelola sampah dan mendapatkan nilai ekonomi dari sampah yang dikumpulkan.</p>
+                            <a href="#" class="btn btn-service">Temukan Bank Sampah</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mt-3">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Konsultasi" class="service-img">
+                        <div class="service-body">
+                            <div class="service-icon">
+                                <i class="bi bi-chat-square-text-fill"></i>
+                            </div>
+                            <h3 class="service-title">Konsultasi</h3>
+                            <p>Layanan konsultasi gratis untuk membantu bisnis dan komunitas mengembangkan sistem pengelolaan sampah yang efektif dan berkelanjutan.</p>
+                            <a href="#" class="btn btn-service">Jadwalkan Konsultasi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--primary-color);">Bagaimana Cara Menggunakan Layanan Kami</h2>
+                <p class="lead">Hanya dalam 3 langkah sederhana</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Daftar Akun</h3>
+                        <p>Buat akun DaurRupa secara gratis melalui website atau aplikasi mobile kami. Proses pendaftaran hanya membutuhkan waktu 2 menit.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Pilih Layanan</h3>
+                        <p>Temukan layanan yang sesuai dengan kebutuhan Anda, baik itu setor sampah, pamerkan karya, atau layanan lainnya.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Nikmati Manfaatnya</h3>
+                        <p>Dapatkan berbagai manfaat termasuk poin reward, kontribusi untuk lingkungan, dan akses ke komunitas pecinta lingkungan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold" style="color: var(--primary-color);">Apa Kata Pengguna Kami</h2>
+                <p class="lead">Testimoni dari mereka yang telah menggunakan layanan DaurRupa</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="User" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Diana Putri</h5>
+                                <small>Pengguna Setor Sampah</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Sangat mudah menggunakan layanan setor sampah DaurRupa. Sekarang saya bisa mengelola sampah rumah tangga dengan lebih baik dan dapat reward juga!"</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Rudi Hartono</h5>
+                                <small>Pengguna Pamerkan Karya</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Platform pamerkan karya sangat membantu saya mempromosikan produk daur ulang saya. Sudah dapat beberapa order berkat gallery DaurRupa!"</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-0">Siti Aminah</h5>
+                                <small>Pengguna Bank Sampah</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Sebagai pengurus bank sampah, DaurRupa sangat membantu meningkatkan partisipasi warga dalam program kami. Sistemnya sangat user-friendly."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="mb-4">Siap Memulai Perjalanan Daur Ulang Anda?</h2>
+                    <p class="lead mb-5">Bergabunglah dengan ribuan pengguna lainnya yang telah berkontribusi untuk lingkungan yang lebih bersih dan berkelanjutan.</p>
+                    <a href="#" class="btn btn-light btn-lg me-2" style="background-color: white; color: var(--primary-color); font-weight: 600;">Daftar Sekarang</a>
+                    <a href="login/login.html" class="btn btn-outline-light btn-lg">Masuk Akun</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-about">
+                        <span class="footer-logo">
+                            <i class="bi bi-recycle"></i> DaurRupa
+                        </span>
+                        <p>Platform pengelolaan sampah modern yang menghubungkan masyarakat dengan bank sampah terdekat untuk menciptakan lingkungan yang lebih bersih dan sehat.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Tautan Cepat</h5>
+                        <ul>
+                            <li><a href="index.html">Beranda</a></li>
+                            <li><a href="#">Layanan</a></li>
+                            <li><a href="./gallery/index.html">Gallery</a></li>
+                            <li><a href="./edukasi/edukasi.html">Edukasi</a></li>
+                            <li><a href="#">Tentang Kami</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Layanan Kami</h5>
+                        <ul>
+                            <li><a href="Setor/Setor.html">Setor Sampah</a></li>
+                            <li><a href="./gallery/index.html">Pamerkan Karya</a></li>
+                            <li><a href="#">Daur Ulang</a></li>
+                            <li><a href="./edukasi/edukasi.html">Edukasi Lingkungan</a></li>
+                            <li><a href="#">Bank Sampah</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Kontak Kami</h5>
+                        <ul>
+                            <li><i class="bi bi-geo-alt-fill me-2"></i> Jl. Lingkungan Hijau No. 123, Jakarta</li>
+                            <li><i class="bi bi-telephone-fill me-2"></i> (021) 1234-5678</li>
+                            <li><i class="bi bi-envelope-fill me-2"></i> info@daurrupa.id</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 DaurRupa. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
