@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
+
     <style>
         :root {
             --primary-color: #3E5F44;
@@ -15,76 +16,143 @@
             --accent-color: #93DA97;
             --light-color: #E8FFD7;
         }
-        
+
         body {
             font-family: 'Segoe UI', sans-serif;
             color: #333;
             background-color: #f8f9fa;
         }
-        
-        /* Navbar */
+
+
+        /* Navbar Styles */
         .navbar {
             background-color: white;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
-        
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
         .navbar-brand {
             font-weight: 700;
             color: var(--primary-color) !important;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
         }
-        
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-brand i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .btn-nav {
+            background-color: var(--secondary-color);
+            color: white !important;
+            border-radius: 30px;
+            padding: 8px 20px !important;
+            transition: all 0.3s;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
         /* Header Edukasi */
         .edu-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             padding: 100px 0;
             text-align: center;
         }
-        
+
         .edu-header h1 {
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 20px;
         }
-        
+
         /* Konten Edukasi */
         .edu-section {
             padding: 80px 0;
         }
-        
+
         .edu-card {
             background: white;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
             margin-bottom: 30px;
             transition: transform 0.3s, box-shadow 0.3s;
             height: 100%;
         }
-        
+
         .edu-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-        
+
         .edu-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
-        
+
         .edu-card-body {
             padding: 25px;
         }
-        
+
         .edu-card h3 {
             color: var(--primary-color);
             margin-bottom: 15px;
         }
-        
+
         .badge-category {
             background-color: var(--accent-color);
             color: var(--primary-color);
@@ -95,21 +163,21 @@
             margin-bottom: 15px;
             display: inline-block;
         }
-        
+
         /* Proses Daur Ulang */
         .recycle-process {
             background-color: var(--light-color);
             padding: 80px 0;
             position: relative;
         }
-        
+
         .process-step {
             text-align: center;
             padding: 30px;
             position: relative;
             z-index: 1;
         }
-        
+
         .process-step .step-number {
             width: 60px;
             height: 60px;
@@ -123,117 +191,142 @@
             font-weight: bold;
             margin: 0 auto 20px;
         }
-        
+
         .process-step h3 {
             color: var(--primary-color);
             margin-bottom: 15px;
         }
-        
+
         /* FAQ Section */
         .faq-section {
             padding: 80px 0;
             background-color: white;
         }
-        
+
         .accordion-button:not(.collapsed) {
             background-color: rgba(93, 218, 151, 0.1);
             color: var(--primary-color);
             font-weight: 600;
         }
-        
+
         .accordion-button:focus {
             box-shadow: none;
             border-color: var(--accent-color);
         }
-        
+
         .accordion-button::after {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%233E5F44'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
         }
-        
+
         /* Animasi */
         .fade-in {
             animation: fadeIn 1.5s ease-in-out;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         .slide-in-left {
             animation: slideInLeft 1s ease-out;
         }
-        
+
         @keyframes slideInLeft {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
-        
+
         .pulse {
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         /* Responsive */
         @media (max-width: 768px) {
             .edu-header h1 {
                 font-size: 2.2rem;
             }
-            
+
             .edu-header {
                 padding: 60px 0;
             }
-            
+
             .edu-section {
                 padding: 50px 0;
             }
         }
     </style>
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <i class="bi bi-recycle me-2"></i>DaurRupa
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Edukasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Layanan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tentang Kami</a>
-                    </li>
-                    <li class="nav-item ms-lg-3">
-                        <a class="btn btn-success" href="#">
-                            <i class="bi bi-person-fill me-1"></i> Masuk
-                        </a>
-                    </li>
-                </ul>
-            </div>
+          <a class="navbar-brand" href="#">
+            <i class="bi bi-recycle"></i> DaurRupa
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Setor/Setor.html">Setor Sampah</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../gallery/index.html">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="edukasi/edukasi.html">Edukasi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tentang Kami</a>
+                </li>
+                <li class="nav-item ms-lg-2">
+                    <a class="nav-link btn-nav" href="#">
+                        <i class="bi bi-person-fill me-1"></i> Masuk
+                    </a>
+                </li>
+            </ul>
+          </div>
         </div>
-    </nav>
+      </nav>
 
     <!-- Header Edukasi -->
     <header class="edu-header fade-in">
         <div class="container">
             <h1 data-aos="fade-up">Edukasi Pengelolaan Sampah</h1>
-            <p class="lead" data-aos="fade-up" data-aos-delay="200">Pelajari cara mengelola sampah dengan benar untuk lingkungan yang lebih bersih dan berkelanjutan</p>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">Pelajari cara mengelola sampah dengan benar untuk
+                lingkungan yang lebih bersih dan berkelanjutan</p>
         </div>
     </header>
 
@@ -244,39 +337,45 @@
                 <h2 class="fw-bold">Materi Edukasi</h2>
                 <p class="text-muted">Temukan berbagai materi tentang pengelolaan sampah yang bertanggung jawab</p>
             </div>
-            
+
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="edu-card">
-                        <img src="https://images.unsplash.com/photo-1587135991058-8816a1a7e7ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Pemilahan Sampah">
+                        <img src="https://images.unsplash.com/photo-1587135991058-8816a1a7e7ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Pemilahan Sampah">
                         <div class="edu-card-body">
                             <span class="badge-category">Dasar-dasar</span>
                             <h3>Pemilahan Sampah yang Benar</h3>
-                            <p>Pelajari cara memilah sampah organik, anorganik, dan B3 dengan tepat untuk memudahkan proses daur ulang.</p>
+                            <p>Pelajari cara memilah sampah organik, anorganik, dan B3 dengan tepat untuk memudahkan
+                                proses daur ulang.</p>
                             <a href="#" class="btn btn-outline-success">Baca Selengkapnya</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="edu-card">
-                        <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit-crop&w=1350&q=80" alt="Daur Ulang">
+                        <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?ixlib=rb-1.2.1&auto=format&fit-crop&w=1350&q=80"
+                            alt="Daur Ulang">
                         <div class="edu-card-body">
                             <span class="badge-category">Teknik</span>
                             <h3>Kreatifitas Daur Ulang di Rumah</h3>
-                            <p>Ide-ide kreatif untuk mendaur ulang sampah rumah tangga menjadi barang berguna dan bernilai.</p>
+                            <p>Ide-ide kreatif untuk mendaur ulang sampah rumah tangga menjadi barang berguna dan
+                                bernilai.</p>
                             <a href="#" class="btn btn-outline-success">Baca Selengkapnya</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="edu-card">
-                        <img src="https://images.unsplash.com/photo-1558640476-437a2b9438a2?ixlib=rb-1.2.1&auto=format&fit-crop&w=1350&q=80" alt="Kompos">
+                        <img src="https://images.unsplash.com/photo-1558640476-437a2b9438a2?ixlib=rb-1.2.1&auto=format&fit-crop&w=1350&q=80"
+                            alt="Kompos">
                         <div class="edu-card-body">
                             <span class="badge-category">Organik</span>
                             <h3>Membuat Kompos dari Sampah Dapur</h3>
-                            <p>Panduan lengkap mengubah sampah organik dapur menjadi kompos berkualitas untuk tanaman.</p>
+                            <p>Panduan lengkap mengubah sampah organik dapur menjadi kompos berkualitas untuk tanaman.
+                            </p>
                             <a href="#" class="btn btn-outline-success">Baca Selengkapnya</a>
                         </div>
                     </div>
@@ -292,41 +391,45 @@
                 <h2 class="fw-bold">Proses Daur Ulang Sampah</h2>
                 <p class="text-muted">Bagaimana sampah Anda diolah menjadi produk baru yang bermanfaat</p>
             </div>
-            
+
             <div class="row g-4">
                 <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
                     <div class="process-step">
                         <div class="step-number">1</div>
                         <i class="bi bi-archive-fill fs-1 text-success mb-3"></i>
                         <h3>Pengumpulan</h3>
-                        <p>Sampah dikumpulkan dari rumah, sekolah, dan tempat umum melalui sistem penjemputan atau drop point.</p>
+                        <p>Sampah dikumpulkan dari rumah, sekolah, dan tempat umum melalui sistem penjemputan atau drop
+                            point.</p>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
                     <div class="process-step">
                         <div class="step-number">2</div>
                         <i class="bi bi-filter-square-fill fs-1 text-success mb-3"></i>
                         <h3>Pemilahan</h3>
-                        <p>Sampah dipilah berdasarkan jenis materialnya (plastik, kertas, logam, dll) untuk memudahkan proses selanjutnya.</p>
+                        <p>Sampah dipilah berdasarkan jenis materialnya (plastik, kertas, logam, dll) untuk memudahkan
+                            proses selanjutnya.</p>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
                     <div class="process-step">
                         <div class="step-number">3</div>
                         <i class="bi bi-recycle fs-1 text-success mb-3"></i>
                         <h3>Pengolahan</h3>
-                        <p>Material diproses melalui pencucian, penghancuran, dan peleburan untuk dijadikan bahan baku baru.</p>
+                        <p>Material diproses melalui pencucian, penghancuran, dan peleburan untuk dijadikan bahan baku
+                            baru.</p>
                     </div>
                 </div>
-                
+
                 <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
                     <div class="process-step">
                         <div class="step-number">4</div>
                         <i class="bi bi-bag-plus-fill fs-1 text-success mb-3"></i>
                         <h3>Produksi</h3>
-                        <p>Bahan baku daur ulang diubah menjadi produk baru yang siap digunakan kembali oleh masyarakat.</p>
+                        <p>Bahan baku daur ulang diubah menjadi produk baru yang siap digunakan kembali oleh masyarakat.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -338,60 +441,75 @@
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="fw-bold">Pertanyaan Umum</h2>
-                <p class="text-muted">Temukan jawaban atas pertanyaan yang sering diajukan tentang pengelolaan sampah</p>
+                <p class="text-muted">Temukan jawaban atas pertanyaan yang sering diajukan tentang pengelolaan sampah
+                </p>
             </div>
-            
+
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="accordion" id="faqAccordion">
                         <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="100">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq1">
                                     Apa saja jenis sampah yang bisa didaur ulang?
                                 </button>
                             </h3>
                             <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Jenis sampah yang bisa didaur ulang antara lain: plastik (botol, kemasan), kertas dan karton, logam (kaleng, aluminium), kaca, serta beberapa jenis elektronik. Setiap jenis memiliki proses daur ulang yang berbeda.
+                                    Jenis sampah yang bisa didaur ulang antara lain: plastik (botol, kemasan), kertas
+                                    dan karton, logam (kaleng, aluminium), kaca, serta beberapa jenis elektronik. Setiap
+                                    jenis memiliki proses daur ulang yang berbeda.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="200">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq2">
                                     Bagaimana cara memulai pengomposan di rumah?
                                 </button>
                             </h3>
                             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Untuk memulai pengomposan di rumah: 1) Siapkan wadah kompos, 2) Kumpulkan sampah organik (sisa sayur, buah, daun), 3) Campur dengan bahan coklat (daun kering, kertas), 4) Aduk secara berkala, 5) Jaga kelembaban. Kompos akan siap dalam 2-3 bulan.
+                                    Untuk memulai pengomposan di rumah: 1) Siapkan wadah kompos, 2) Kumpulkan sampah
+                                    organik (sisa sayur, buah, daun), 3) Campur dengan bahan coklat (daun kering,
+                                    kertas), 4) Aduk secara berkala, 5) Jaga kelembaban. Kompos akan siap dalam 2-3
+                                    bulan.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="300">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq3">
                                     Apa manfaat ekonomi dari daur ulang sampah?
                                 </button>
                             </h3>
                             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Daur ulang menciptakan ekonomi sirkular dengan: 1) Mengurangi biaya produksi bahan baru, 2) Menciptakan lapangan kerja di sektor pengolahan, 3) Memberi nilai tambah pada sampah, 4) Menghemat energi hingga 95% dibanding produksi dari bahan mentah.
+                                    Daur ulang menciptakan ekonomi sirkular dengan: 1) Mengurangi biaya produksi bahan
+                                    baru, 2) Menciptakan lapangan kerja di sektor pengolahan, 3) Memberi nilai tambah
+                                    pada sampah, 4) Menghemat energi hingga 95% dibanding produksi dari bahan mentah.
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion-item mb-3 border-0 shadow-sm" data-aos="fade-up" data-aos-delay="400">
                             <h3 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faq4">
                                     Bagaimana cara bergabung dengan program DaurRupa?
                                 </button>
                             </h3>
                             <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Anda bisa bergabung dengan: 1) Mendaftar di website atau aplikasi DaurRupa, 2) Memilih layanan (penjemputan atau drop point), 3) Mulai memilah sampah sesuai kategori, 4) Menyetor sampah dan dapatkan poin reward yang bisa ditukar dengan berbagai manfaat.
+                                    Anda bisa bergabung dengan: 1) Mendaftar di website atau aplikasi DaurRupa, 2)
+                                    Memilih layanan (penjemputan atau drop point), 3) Mulai memilah sampah sesuai
+                                    kategori, 4) Menyetor sampah dan dapatkan poin reward yang bisa ditukar dengan
+                                    berbagai manfaat.
                                 </div>
                             </div>
                         </div>
@@ -407,7 +525,8 @@
             <div class="row align-items-center">
                 <div class="col-md-8" data-aos="fade-right">
                     <h3 class="fw-bold">Siap berkontribusi untuk lingkungan yang lebih baik?</h3>
-                    <p class="mb-md-0">Mulai pilah sampah Anda sekarang dan dapatkan berbagai manfaat dari program kami.</p>
+                    <p class="mb-md-0">Mulai pilah sampah Anda sekarang dan dapatkan berbagai manfaat dari program kami.
+                    </p>
                 </div>
                 <div class="col-md-4 text-md-end" data-aos="fade-left">
                     <a href="#" class="btn btn-light btn-lg pulse">
@@ -434,7 +553,7 @@
                         <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-2 col-md-4 mb-4">
                     <h5 class="fw-bold mb-3">Tautan</h5>
                     <ul class="list-unstyled">
@@ -445,7 +564,7 @@
                         <li><a href="#" class="text-white text-decoration-none">Kontak</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-4 mb-4">
                     <h5 class="fw-bold mb-3">Kontak</h5>
                     <ul class="list-unstyled">
@@ -454,7 +573,7 @@
                         <li><i class="bi bi-envelope-fill me-2"></i> info@daurrupa.id</li>
                     </ul>
                 </div>
-                
+
                 <div class="col-lg-3 col-md-4 mb-4">
                     <h5 class="fw-bold mb-3">Newsletter</h5>
                     <p>Dapatkan informasi terbaru tentang pengelolaan sampah.</p>
@@ -464,9 +583,9 @@
                     </div>
                 </div>
             </div>
-            
+
             <hr class="my-4">
-            
+
             <div class="text-center">
                 <p class="mb-0">&copy; 2023 DaurRupa. All rights reserved.</p>
             </div>
@@ -482,10 +601,10 @@
             duration: 1000,
             once: true
         });
-        
+
         // Animasi untuk elemen dengan class pulse saat muncul di layar
         const pulseElements = document.querySelectorAll('.pulse');
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -494,17 +613,17 @@
                     entry.target.style.animation = 'none';
                 }
             });
-        }, {threshold: 0.1});
-        
+        }, { threshold: 0.1 });
+
         pulseElements.forEach(el => {
             observer.observe(el);
         });
-        
+
         // Animasi teks berjalan untuk header
         const eduHeader = document.querySelector('.edu-header h1');
         const text = eduHeader.textContent;
         eduHeader.textContent = '';
-        
+
         let i = 0;
         const typeWriter = setInterval(() => {
             if (i < text.length) {
@@ -516,4 +635,5 @@
         }, 100);
     </script>
 </body>
+
 </html>

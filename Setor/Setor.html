@@ -25,6 +25,8 @@
         }
 
         /* Navbar Styles */
+
+        /* Navbar Styles */
         .navbar {
             background-color: white;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -32,6 +34,12 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         }
 
         .navbar-brand {
@@ -39,6 +47,12 @@
             color: var(--primary-color) !important;
             display: flex;
             align-items: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
         }
 
         .navbar-brand i {
@@ -52,6 +66,7 @@
             font-weight: 500;
             margin: 0 10px;
             position: relative;
+            transition: all 0.3s;
         }
 
         .nav-link:hover {
@@ -85,6 +100,7 @@
         .btn-nav:hover {
             background-color: var(--primary-color);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         /* Hero Section */
@@ -412,32 +428,17 @@
             padding: 60px 0;
         }
 
-        .rectangle-box {
-            width: 620px;
-            height: 380px;
-            background-color: rgba(199, 199, 199, 0.4);
-            /* warna gelap transparan */
-            backdrop-filter: blur(8px);
-            /* efek blur */
-            -webkit-backdrop-filter: blur(8px);
-            /* untuk Safari */
-            margin: 0 auto;
-            border-radius: 12px;
-            padding: 20px;
-            color: #f4f4f4;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-
         .poin-angka {
             font-size: 4rem;
             /* Kamu bisa sesuaikan, misal 3rem atau 5rem */
             font-weight: bold;
             margin-top: 40px;
         }
-        
 
-
+        .rectangle-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(255, 255, 255, 0.3);
+        }
 
         .rectangle-box {
             max-width: 400px;
@@ -504,39 +505,30 @@
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="bi bi-recycle"></i>
-                DaurRupa
+                <i class="bi bi-recycle"></i> DaurRupa
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Beranda</a>
+                        <a class="nav-link active" href="#">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Setor Sampah</a>
+                        <a class="nav-link" href="#">Tentang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Gallery</a>
+                        <a class="nav-link" href="#">Layanan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Edukasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Tentang Kami</a>
-                    </li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="nav-link btn-nav" href="#">
-                            <i class="bi bi-person-fill me-1"></i> Masuk
-                        </a>
+                        <a class="btn btn-nav ms-3" href="#">Masuk</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
 
     <!-- Hero Section -->
     <div class="hero-section">
@@ -634,10 +626,10 @@
             <p class="mb-4">Kumpulkan lebih banyak poin dengan mendaur ulang sampah</p>
 
             <!-- Kartu poin -->
-            <div class="rectangle-box">
+            <div class="rectangle-box clickable-card" onclick="handleCardClick(this)">
                 <div class="d-flex justify-content-center mb-2">
-                    <lottie-player src="../assets/img/json/poin.json"
-                        background="transparent" speed="1" style="width: 130px; height: 130px;" loop autoplay>
+                    <lottie-player src="../assets/img/json/poin.json" background="transparent" speed="1"
+                        style="width: 130px; height: 130px;" loop autoplay>
                     </lottie-player>
                 </div>
                 <p class="poin-angka">2.450</p>
@@ -708,6 +700,40 @@
     </footer>
 
     <script>
+        function animateCounterOnce(element) {
+            const targetText = element.getAttribute('data-target') || element.textContent;
+            const target = parseInt(targetText.replace(/[+,]/g, ''));
+            const isPlusFormat = targetText.includes('+');
+            let current = 0;
+            const duration = 2000;
+            const increment = target / (duration / 20);
+
+            const interval = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    clearInterval(interval);
+                    element.textContent = isPlusFormat
+                        ? `+${target.toLocaleString('id-ID')}`
+                        : target.toLocaleString('id-ID');
+                } else {
+                    element.textContent = isPlusFormat
+                        ? `+${Math.floor(current).toLocaleString('id-ID')}`
+                        : Math.floor(current).toLocaleString('id-ID');
+                }
+            }, 20);
+        }
+
+        function handleCardClick(card) {
+            const counter = card.querySelector('.stats-counter');
+            if (counter) {
+                animateCounterOnce(counter);
+            }
+
+            // Bisa tambahkan feedback klik lainnya di sini, seperti alert atau navigasi
+            alert('Anda mengklik: ' + card.querySelector('h5').innerText);
+        }
+
+
         // Animasi counter yang diperbaiki
         const animateCounters = () => {
             const counters = document.querySelectorAll('.counter');

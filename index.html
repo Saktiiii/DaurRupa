@@ -681,9 +681,13 @@
                             <button class="btn btn-hero">
                                 <i class="bi bi-arrow-right-circle-fill me-2"></i> Mulai Sekarang
                             </button>
-                            <button class="btn btn-hero btn-hero-outline">
-                                <i class="bi bi-play-circle-fill me-2"></i> Lihat Demo
-                            </button>
+                            <a href="Setor/Setor.html" >
+                                <div class="btn btn-hero btn-hero-outline">
+
+                                    <i class="bi bi-play-circle-fill me-2"></i> Setor Sampah
+                                </div>
+                              </a>
+                              
                         </div>
                     </div>
                 </div>
@@ -1005,9 +1009,7 @@
                 const y = e.clientY - rect.top;
                 
                 // Set pulse styles
-                pulse.style.width = pulse.style.height = `${size}px`;
-                pulse.style.left = `${x - size/2}px`;
-                pulse.style.top = `${y - size/2}px`;
+           
                 
                 // Add pulse to button
                 button.appendChild(pulse);
