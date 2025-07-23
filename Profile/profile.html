@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profil Pengguna | Bank Sampah</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+    <style>
+        :root {
+            --primary-color: #3E5F44;
+            --secondary-color: #5E936C;
+            --accent-color: #93DA97;
+            --light-color: #E8FFD7;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .navbar-brand i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+
+        .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .btn-nav {
+            background-color: var(--secondary-color);
+            color: white !important;
+            border-radius: 30px;
+            padding: 8px 20px !important;
+            transition: all 0.3s;
+        }
+
+        .btn-nav:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .main-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('img/background2.webp') no-repeat center center/cover;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: white;
+        }
+
+        /* Profile */
+        .profile-card {
+            background: #5e936cdb;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            color: white;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+
+        /* Section Title */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: white;
+            border-radius: 2px;
+        }
+
+        .card-custom {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .card-footer {
+            background-color: transparent;
+            border-top: none;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .card-category {
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+
+        .scrollable-content {
+    max-height: 350px; /* Atur tinggi sesuai kebutuhan */
+    overflow-y: auto;
+    overflow-x: hidden; /* Hentikan scroll horizontal pada konten scrollable */
+    padding-right: 5px; /* Tambahan ruang untuk scrollbar */
+}
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar-collapse {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                margin-top: 15px;
+            }
+
+            .nav-link {
+                margin: 10px 0;
+            }
+
+            .nav-link.active::after {
+                display: none;
+            }
+
+            .main-hero {
+                padding: 60px 0;
+                min-height: auto;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-logo i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h5 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .navbar-collapse {
+                background-color: white;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                margin-top: 15px;
+            }
+
+            .nav-link {
+                margin: 10px 0;
+            }
+
+            .nav-link.active::after {
+                display: none;
+            }
+        }
+
+        .bg-section {
+            background: url('../assets/img/banner1.jpg');
+
+            position: relative;
+            padding: 60px 0;
+        }
+
+        .rectangle-box {
+            width: 620px;
+            height: 380px;
+            background-color: rgba(199, 199, 199, 0.4);
+            /* warna gelap transparan */
+            backdrop-filter: blur(8px);
+            /* efek blur */
+            -webkit-backdrop-filter: blur(8px);
+            /* untuk Safari */
+            margin: 0 auto;
+            border-radius: 12px;
+            padding: 20px;
+            color: #f4f4f4;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .poin-angka {
+            font-size: 4rem;
+            /* Kamu bisa sesuaikan, misal 3rem atau 5rem */
+            font-weight: bold;
+            margin-top: 40px;
+        }
+        
+
+
+
+        .rectangle-box {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            border-radius: 16px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .poin-angka {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin: 0;
+        }
+
+        .badge-list {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge-custom {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-yellow {
+            background-color: #ffdd57;
+            color: #333;
+        }
+
+        .bg-gray {
+            background-color: #e6e6e6;
+            color: #333;
+        }
+
+        .bg-orange {
+            background-color: #f4a261;
+            color: white;
+        }
+
+        .bg-green {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-recycle"></i>
+                DaurRupa
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Layanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery/index.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="edukasi/edukasi.html">Edukasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link btn-nav" href="#">
+                            <i class="bi bi-person-fill me-1"></i> Profile
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="main-hero">
+        <div class="container my-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-4 mb-4">
+                    <div class="profile-card text-center">
+                        <img src="img/profile2.webp" alt="Profile" class="profile-image mb-3">
+                        <h5 class="mb-0">Username</h5>
+                        <hr>
+                        <div>
+                            <small>Alamat</small><br><strong>Jl. Lingkungan Hijau No. 123, Jakarta</strong>
+                        </div>
+                        <hr>
+                        <div>
+                            <small>Email</small><br><strong>info@ecowaste.id</strong>
+                        </div>
+                        <hr>
+                        <div>
+                            <small>No.Handphone</small><br><strong>(021) 1234-5678</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main content -->
+                <div class="col-md-8">
+                    <div class="card" style="background: #5e936cdb;">
+                        <div class="card-body" >
+
+                            <h5 class="text-center section-title">Karya Yang Di kirimkan</h5>
+                            <div class="scrollable-content">
+                            <div class="row g-4">
+                                <!-- Kartu 1 -->
+                                <div class="col-12 col-sm-6 col-md-4">
+                                    <div class="card card-custom">
+                                        <img src="img/abstract.jpg" alt="Besi Tua Hidup" class="card-img-top">
+                                        <div class="card-footer">
+                                            <span>Abstrak</span>
+                                            <span>Plastik</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Kartu 2 -->
+                                <div class="col-12 col-sm-6 col-md-4">
+                                    <div class="card card-custom">
+                                        <img src="img/dress1.jpg" alt="Besi Tua Hidup" class="card-img-top">
+                                        <div class="card-footer">
+                                            <span>Dress</span>
+                                            <span>Kertas</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Kartu 3 -->
+                                <div class="col-12 col-sm-6 col-md-4">
+                                    <div class="card card-custom">
+                                        <img src="img/jam.jpg" alt="Besi Tua Hidup" class="card-img-top">
+                                        <div class="card-footer">
+                                            <span>Jam</span>
+                                            <span>Plastik</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Kartu 4 -->
+                                <div class="col-12 col-sm-6 col-md-4">
+                                    <div class="card card-custom">
+                                        <img src="img/lampu.jpg" alt="Besi Tua Hidup" class="card-img-top">
+                                        <div class="card-footer">
+                                            <span>Lampu</span>
+                                            <span>Kayu</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-md-4">
+                                    <div class="card card-custom">
+                                        <img src="img/lukis.jpg" alt="Besi Tua Hidup" class="card-img-top">
+                                        <div class="card-footer">
+                                            <span>Lukis</span>
+                                            <span>Kertas</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-6 col-md-4">
+                                    <div class="card card-custom">
+                                        <img src="img/tas.jpg" alt="Besi Tua Hidup" class="card-img-top">
+                                        <div class="card-footer">
+                                            <span>Tas</span>
+                                            <span>Platik</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-about">
+                        <span class="footer-logo">
+                            <i class="bi bi-recycle"></i> DaurRupa
+                        </span>
+                        <p>Platform pengelolaan sampah modern yang menghubungkan masyarakat dengan bank sampah terdekat
+                            untuk menciptakan lingkungan yang lebih bersih dan sehat.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Tautan Cepat</h5>
+                        <ul>
+                            <li><a href="#">Beranda</a></li>
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Layanan</a></li>
+                            <li><a href="#">Bank Sampah</a></li>
+                            <li><a href="#">Tentang Kami</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Layanan Kami</h5>
+                        <ul>
+                            <li><a href="#">Setor Sampah</a></li>
+                            <li><a href="#">Penjemputan Sampah</a></li>
+                            <li><a href="#">Daur Ulang</a></li>
+                            <li><a href="#">Edukasi Lingkungan</a></li>
+                            <li><a href="#">Pelacakan Sampah</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="footer-links">
+                        <h5>Tentang Kami Kami</h5>
+                        <ul>
+                            <li><i class="bi bi-geo-alt-fill me-2"></i> Jl. Lingkungan Hijau No. 123, Jakarta</li>
+                            <li><i class="bi bi-telephone-fill me-2"></i> (021) 1234-5678</li>
+                            <li><i class="bi bi-envelope-fill me-2"></i> info@ecowaste.id</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 EcoWaste. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
