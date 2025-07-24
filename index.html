@@ -16,6 +16,25 @@
             --light-color: #E8FFD7;
         }
 
+                #loading-screen {
+            position: fixed;
+            inset: 0;
+            background-color: #93DA97;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+        #loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* Main Content Hidden Initially */
+        #main-content {
+            display: none;
+            height: 100%;
+            overflow: auto;
+            background-color: #f8f9fa;
+        }
+
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
@@ -632,44 +651,10 @@
 </head>
 
 <body>
-      <div id="loading-screen">
-    <spline-viewer
-      url="https://prod.spline.design/w8XdcfT99Cx9WJdV/scene.splinecode"
-      style="width: 100%; height: 100%; background-color: #93DA97"
-    ></spline-viewer>
-  </div>
-
-  <!-- Main Content -->
-  <div id="main-content">
-    Selamat datang di website!
-  </div>
-
-  <!-- Load Spline Viewer Script -->
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.35/build/spline-viewer.js"></script>
-<spline-viewer url="https://prod.spline.design/w8XdcfT99Cx9WJdV/scene.splinecode"></spline-viewer>
-  <!-- Logic: Fade Out Loader After Scene Load -->
-  <script>
-    const loadingScreen = document.getElementById('loading-screen');
-    const mainContent = document.getElementById('main-content');
-    const splineViewer = document.querySelector('spline-viewer');
-
-    splineViewer.addEventListener('load', () => {
-      loadingScreen.classList.add('fade-out');
-      setTimeout(() => {
-        loadingScreen.style.display = 'none';
-        mainContent.style.display = 'flex';
-      }, 1000);
-    });
-
-    // Fallback timeout (jaga-jaga jika event load gagal)
-    setTimeout(() => {
-      if (!loadingScreen.classList.contains('fade-out')) {
-        loadingScreen.classList.add('fade-out');
-        loadingScreen.style.display = 'none';
-        mainContent.style.display = 'flex';
-      }
-    }, 5000);
-  </script>
+        <div id="loading-screen">
+        <spline-viewer url="https://prod.spline.design/w8XdcfT99Cx9WJdV/scene.splinecode"
+            style="width:100%; height:100%; background-color:#93DA97;"></spline-viewer>
+    </div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
