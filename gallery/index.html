@@ -7,9 +7,9 @@
   <title>Galeri DaurRupa</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index.css" />
   <style>
-
+    /* Your custom styles can go here */
   </style>
 </head>
 
@@ -50,7 +50,6 @@
     </div>
   </nav>
 
-
   <canvas id="smokeCanvas"></canvas>
 
   <div class="main-content">
@@ -62,13 +61,10 @@
           <span class="arrow-icon" aria-hidden="true"></span>
         </button>
 
-        <div class="filter-content" id="filter-content" aria-hidden="false" role="region"
-          aria-labelledby="filter-toggle">
+        <div class="filter-content" id="filter-content" aria-hidden="false" role="region" aria-labelledby="filter-toggle">
           <div class="search-container">
-            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor" width="16" height="16">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 11-10.606-10.607 7.5 7.5 0 0110.606 10.607z" />
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 11-10.606-10.607 7.5 7.5 0 0110.606 10.607z" />
             </svg>
             <input type="search" class="search-input" placeholder="Untuk meneliti..." id="searchInput" />
           </div>
@@ -104,7 +100,7 @@
       </section>
 
       <!-- Gallery -->
-      <div class="gallery" aria-label="Galeri karya seni daur ulang">
+      <div class="gallery mt-4" aria-label="Galeri karya seni daur ulang">
         <article class="card">
           <img src="assets/abstract.jpg" alt="Patung dari botol plastik" />
           <div class="card-footer">
@@ -162,8 +158,8 @@
             <span class="status">Kertas</span>
           </div>
         </article>
-
       </div>
+      
       <nav class="custom-pagination mt-4" aria-label="Navigasi halaman">
         <ul class="pagination-list">
           <li class="pagination-item disabled"><button disabled>&lsaquo;</button></li>
@@ -173,9 +169,7 @@
           <li class="pagination-item"><button>&rsaquo;</button></li>
         </ul>
       </nav>
-
     </div>
-
   </div>
 
   <!-- Footer -->
@@ -187,8 +181,7 @@
             <span class="footer-logo">
               <i class="bi bi-recycle"></i> DaurRupa
             </span>
-            <p>Platform pengelolaan sampah modern yang menghubungkan masyarakat dengan bank sampah terdekat untuk
-              menciptakan lingkungan yang lebih bersih dan sehat.</p>
+            <p>Platform pengelolaan sampah modern yang menghubungkan masyarakat dengan bank sampah terdekat untuk menciptakan lingkungan yang lebih bersih dan sehat.</p>
             <div class="social-icons">
               <a href="#"><i class="bi bi-facebook"></i></a>
               <a href="#"><i class="bi bi-twitter"></i></a>
@@ -257,11 +250,13 @@
         this.speedX = (Math.random() - 0.5);
         this.speedY = (Math.random() - 0.5);
       }
+      
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
         this.alpha -= 0.01;
       }
+      
       draw() {
         ctx.beginPath();
         ctx.fillStyle = color;
