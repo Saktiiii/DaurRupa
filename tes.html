@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spline Loading with Custom Background</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+      background-color: #93DA97; /* Custom background color */
+    }
+
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      transition: opacity 1s ease;
+      background-color: #93DA97; /* Match with page background */
+    }
+
+    #loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #main-content {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #93DA97;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Spline Loading Screen -->
+  <div id="loading-screen">
+    <spline-viewer
+      url="https://prod.spline.design/w8XdcfT99Cx9WJdV/scene.splinecode"
+      style="width: 100%; height: 100%; background-color: #93DA97"
+    ></spline-viewer>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    Selamat datang di website!
+  </div>
+
+  <!-- Load Spline Viewer Script -->
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.35/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/w8XdcfT99Cx9WJdV/scene.splinecode"></spline-viewer>
+  <!-- Logic: Fade Out Loader After Scene Load -->
+  <script>
+    const loadingScreen = document.getElementById('loading-screen');
+    const mainContent = document.getElementById('main-content');
+    const splineViewer = document.querySelector('spline-viewer');
+
+    splineViewer.addEventListener('load', () => {
+      loadingScreen.classList.add('fade-out');
+      setTimeout(() => {
+        loadingScreen.style.display = 'none';
+        mainContent.style.display = 'flex';
+      }, 1000);
+    });
+
+    // Fallback timeout (jaga-jaga jika event load gagal)
+    setTimeout(() => {
+      if (!loadingScreen.classList.contains('fade-out')) {
+        loadingScreen.classList.add('fade-out');
+        loadingScreen.style.display = 'none';
+        mainContent.style.display = 'flex';
+      }
+    }, 5000);
+  </script>
+
+</body>
+</html>

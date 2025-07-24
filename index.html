@@ -16,6 +16,25 @@
             --light-color: #E8FFD7;
         }
 
+                #loading-screen {
+            position: fixed;
+            inset: 0;
+            background-color: #93DA97;
+            z-index: 9999;
+            transition: opacity 1s ease;
+        }
+        #loading-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        /* Main Content Hidden Initially */
+        #main-content {
+            display: none;
+            height: 100%;
+            overflow: auto;
+            background-color: #f8f9fa;
+        }
+
         body {
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
@@ -632,6 +651,10 @@
 </head>
 
 <body>
+        <div id="loading-screen">
+        <spline-viewer url="https://prod.spline.design/w8XdcfT99Cx9WJdV/scene.splinecode"
+            style="width:100%; height:100%; background-color:#93DA97;"></spline-viewer>
+    </div>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
